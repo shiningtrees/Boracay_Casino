@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  casino:
+    build: .
+    container_name: boracay_casino
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - TZ=Asia/Seoul

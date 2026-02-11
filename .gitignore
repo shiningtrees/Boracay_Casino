@@ -1,0 +1,10 @@
+venv/
+.env
+__pycache__/
+*.log
+*.db
+.DS_Store
+.idea/
+.vscode/
+EOF
+state.json
