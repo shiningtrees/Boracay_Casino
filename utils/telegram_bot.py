@@ -158,12 +158,26 @@ class CasinoBot:
                         text=f"✅ 선택 완료: {symbol}\n\n진입 중..."
                     )
                 else:
+                    # 인라인 버튼 메시지 수정
                     await query.edit_message_text(
                         text="❌ 선택 처리 실패. 이미 시간이 초과되었거나 다른 문제가 발생했습니다."
                     )
+                    # 하단 메뉴 버튼 복구를 위해 새 메시지 전송
+                    await context.bot.send_message(
+                        chat_id=query.message.chat_id,
+                        text="💤 다음 사이클을 기다려주세요.",
+                        reply_markup=self.markup
+                    )
             else:
+                # 인라인 버튼 메시지 수정
                 await query.edit_message_text(
                     text="❌ 시스템 오류: 스케줄러가 연결되지 않았습니다."
+                )
+                # 하단 메뉴 버튼 복구를 위해 새 메시지 전송
+                await context.bot.send_message(
+                    chat_id=query.message.chat_id,
+                    text="🔄 봇을 재시작해주세요.",
+                    reply_markup=self.markup
                 )
     
     async def send_candidate_selection(self, candidates, chat_id=None):
