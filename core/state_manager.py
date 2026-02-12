@@ -45,9 +45,9 @@ class StateManager:
         if entry_time is None:
             entry_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
-        # 쿨타임 설정: 진입 시간 + 설정된 주기 - 5초 (다음 주기 시작 시점엔 해제되어 있도록)
+        # 쿨타임 설정: 진입 시간 + 설정된 주기 - 20초 (다음 주기 시작 시점보다 여유있게 해제)
         et = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
-        cooldown_until = (et + config.CYCLE_DELTA - timedelta(seconds=5)).strftime("%Y-%m-%d %H:%M:%S")
+        cooldown_until = (et + config.CYCLE_DELTA - timedelta(seconds=20)).strftime("%Y-%m-%d %H:%M:%S")
             
         self.state["active_bet"] = {
             "symbol": symbol,
