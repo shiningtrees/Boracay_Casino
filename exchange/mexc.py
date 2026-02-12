@@ -32,6 +32,30 @@ class MexcConnector:
         except Exception as e:
             print(f"❌ [MEXC] 잔고 조회 실패: {e}")
             return 0, 0
+    
+    def get_holdings(self, exclude=['USDT']):
+        """USDT 외 보유 코인 조회 (포지션 감지용)"""
+        try:
+            balance = self.exchange.fetch_balance()
+            holdings = []
+            
+            for currency, amount in balance['total'].items():
+                if currency in exclude:
+                    continue
+                
+                # 잔액이 있는 코인만 (먼지 제외: 0.0001 이상)
+                if amount and amount > 0.0001:
+                    holdings.append({
+                        'currency': currency,
+                        'amount': amount,
+                        'free': balance['free'].get(currency, 0),
+                        'symbol': f"{currency}/USDT"
+                    })
+            
+            return holdings
+        except Exception as e:
+            print(f"❌ [MEXC] 보유 코인 조회 실패: {e}")
+            return []
 
     def get_ticker(self, symbol):
         """현재가 조회 (예: BTC/USDT)"""
