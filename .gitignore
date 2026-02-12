@@ -6,5 +6,12 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
-EOF
+.history/
+
+# State files
 state.json
+casino_state.json
+
+# Logs
+logs/
+*.jsonl
