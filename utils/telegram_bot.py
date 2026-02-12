@@ -78,29 +78,82 @@ class CasinoBot:
                     pnl = round((current_price - entry_price) / entry_price * 100, 2)
                     emoji = "🔴" if pnl > 0 else "🔵" # 상승: 빨강, 하락: 파랑 (국내 정서)
                     
+                    # 자동 청산 예정 시간 계산
+                    from datetime import datetime, timedelta
+                    try:
+                        entry_dt = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
+                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=10)
+                        now = datetime.now()
+                        remaining = exit_dt - now
+                        
+                        if remaining.total_seconds() > 0:
+                            remaining_minutes = int(remaining.total_seconds() / 60)
+                            remaining_seconds = int(remaining.total_seconds() % 60)
+                            exit_time_str = exit_dt.strftime("%H:%M:%S")
+                            time_info = f"⏰ 자동 청산: `{exit_time_str}`\n⏳ 남은 시간: 약 {remaining_minutes}분 {remaining_seconds}초"
+                        else:
+                            time_info = "⏰ 자동 청산: 곧 실행"
+                    except:
+                        time_info = f"⏰ Rule: {config.CYCLE_STRING} 뒤 자동 청산"
+                    
                     msg = (
                         f"🎲 **진행 중인 게임**\n"
                         f"Symbol: `{symbol}`\n"
                         f"Entry: `${entry_price}`\n"
                         f"Curr : `${current_price}` ({emoji} {pnl:+.2f}%)\n"
                         f"Time: {entry_time}\n"
-                        f"Rule: {config.CYCLE_STRING} 뒤 자동 청산"
+                        f"{time_info}"
                     )
                 else:
+                    # 현재가 조회 실패 시에도 청산 시간 표시
+                    from datetime import datetime, timedelta
+                    try:
+                        entry_dt = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
+                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=10)
+                        now = datetime.now()
+                        remaining = exit_dt - now
+                        
+                        if remaining.total_seconds() > 0:
+                            remaining_minutes = int(remaining.total_seconds() / 60)
+                            remaining_seconds = int(remaining.total_seconds() % 60)
+                            exit_time_str = exit_dt.strftime("%H:%M:%S")
+                            time_info = f"⏰ 자동 청산: `{exit_time_str}`\n⏳ 남은 시간: 약 {remaining_minutes}분 {remaining_seconds}초"
+                        else:
+                            time_info = "⏰ 자동 청산: 곧 실행"
+                    except:
+                        time_info = ""
+                    
                     msg = (
                         f"🎲 **진행 중인 게임**\n"
                         f"Symbol: `{symbol}`\n"
                         f"Entry: `${entry_price}`\n"
                         f"⚠️ 현재가 조회 실패\n"
-                        f"Time: {entry_time}"
+                        f"Time: {entry_time}\n"
+                        f"{time_info}"
                     )
             else:
-                # 쿨타임 정보 추가
-                cooldown = self.scheduler.state.get_cooldown()
-                if cooldown:
-                    msg = f"💤 휴식 중 (쿨타임: ~{cooldown})"
+                # 다음 베팅 시간 정보 추가
+                from datetime import datetime
+                next_bet = self.scheduler.state.get_next_bet_time()
+                
+                if next_bet:
+                    now = datetime.now()
+                    remaining = next_bet - now
+                    
+                    if remaining.total_seconds() > 0:
+                        remaining_minutes = int(remaining.total_seconds() / 60)
+                        remaining_seconds = int(remaining.total_seconds() % 60)
+                        next_bet_str = next_bet.strftime("%H:%M:%S")
+                        
+                        msg = (
+                            f"💤 **휴식 중**\n"
+                            f"⏰ 다음 베팅: `{next_bet_str}`\n"
+                            f"⏳ 남은 시간: 약 {remaining_minutes}분 {remaining_seconds}초"
+                        )
+                    else:
+                        msg = "💤 **휴식 중**\n⏰ 다음 베팅: 곧 시작"
                 else:
-                    msg = "💤 휴식 중 (진입 대기)"
+                    msg = "💤 **휴식 중**\n⏰ 대기 중..."
         else:
             msg = "⚠️ 시스템 연결 대기 중..."
             
@@ -153,10 +206,12 @@ class CasinoBot:
                 success = await self.scheduler.execute_user_selection(symbol, context)
                 
                 if success:
-                    # 버튼 메시지 수정 (선택 완료 표시)
+                    # 인라인 버튼 메시지 수정 (선택 완료 표시)
                     await query.edit_message_text(
                         text=f"✅ 선택 완료: {symbol}\n\n진입 중..."
                     )
+                    # 하단 메뉴 버튼 유지 (scheduler에서 진입 메시지를 보내지만 보험용)
+                    # Note: scheduler의 _execute_entry에서 메시지 전송 시 버튼 포함됨
                 else:
                     # 인라인 버튼 메시지 수정
                     await query.edit_message_text(
@@ -243,8 +298,12 @@ class CasinoBot:
                 # 1. 메시지 기록 (JSONL 저장)
                 from utils.logger import log_telegram_message, logger
                 
-                # 2. 전송
-                await self.app.bot.send_message(chat_id=self.chat_id, text=text)
+                # 2. 전송 (하단 메뉴 버튼 포함)
+                await self.app.bot.send_message(
+                    chat_id=self.chat_id, 
+                    text=text,
+                    reply_markup=self.markup  # 하단 메뉴 버튼 항상 포함
+                )
                 
                 # 3. 성공 로그 및 기록
                 logger.info(f"📤 텔레그램 전송 완료")

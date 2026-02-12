@@ -19,7 +19,7 @@ class StateManager:
                     return data
             except Exception as e:
                 logger.error(f"⚠️ 상태 파일 로드 실패: {e}")
-        return {"active_bet": None, "history": []}
+        return {"active_bet": None, "history": [], "last_bet_job_time": None}
 
     def save_state(self):
         try:
@@ -76,7 +76,11 @@ class StateManager:
             self.state["history"].append(bet)
             self.state["active_bet"] = None
             
+            # 쿨타임도 함께 클리어 (청산 완료 시 즉시 다음 베팅 가능)
+            self.state["cooldown_until"] = None
+            
             logger.info(f"🧹 베팅 청산 완료: {bet['symbol']} (Reason: {reason}, PNL: {bet['pnl_percent']}%)")
+            logger.info(f"🔥 쿨타임 해제 (청산 완료)")
             
             self.save_state()
             return bet
@@ -102,3 +106,28 @@ class StateManager:
             logger.info("🧹 선택 대기 상태 제거")
             self.state["pending_selection"] = None
             self.save_state()
+    
+    def set_last_bet_job_time(self, time_str=None):
+        """마지막 베팅 Job 실행 시간 저장"""
+        if time_str is None:
+            time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.state["last_bet_job_time"] = time_str
+        self.save_state()
+    
+    def get_last_bet_job_time(self):
+        """마지막 베팅 Job 실행 시간 조회"""
+        return self.state.get("last_bet_job_time")
+    
+    def get_next_bet_time(self):
+        """다음 베팅 시간 계산"""
+        last_job = self.get_last_bet_job_time()
+        if not last_job:
+            return None
+        
+        try:
+            last_time = datetime.strptime(last_job, "%Y-%m-%d %H:%M:%S")
+            next_time = last_time + config.CYCLE_DELTA
+            return next_time
+        except Exception as e:
+            logger.error(f"❌ 다음 베팅 시간 계산 실패: {e}")
+            return None

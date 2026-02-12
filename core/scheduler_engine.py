@@ -19,6 +19,9 @@ class CasinoScheduler:
         now = datetime.now()
         logger.info(f"🕛 [Job] 베팅 잡 실행 (Time: {now})")
         
+        # 마지막 베팅 Job 시간 저장
+        self.state.set_last_bet_job_time()
+        
         # 0. 쿨타임 체크
         cooldown_until = self.state.get_cooldown()
         if cooldown_until:
@@ -226,15 +229,29 @@ class CasinoScheduler:
             logger.error(f"❌ 시세 조회 실패. 수동 매도 취소.")
             return "❌ 시세 조회 실패. 다시 시도해주세요."
 
+        # 청산 처리 (쿨타임도 함께 해제됨)
         result = self.state.clear_active_bet(current_price, reason="user_request")
         pnl = result['pnl_percent']
         emoji = "🎉" if pnl > 0 else "💧"
-        cooldown_until = self.state.get_cooldown()
+        
+        # 다음 베팅 시간 계산
+        next_bet = self.state.get_next_bet_time()
+        if next_bet:
+            now = datetime.now()
+            remaining = next_bet - now
+            remaining_minutes = int(remaining.total_seconds() / 60)
+            remaining_seconds = int(remaining.total_seconds() % 60)
+            
+            next_bet_str = next_bet.strftime("%H:%M:%S")
+            time_str = f"⏰ 다음 베팅: {next_bet_str} (약 {remaining_minutes}분 {remaining_seconds}초 후)"
+        else:
+            time_str = "⏰ 다음 베팅: 곧 시작"
         
         return (
             f"✅ [수동 청산 완료]\n"
             f"{emoji} PNL: {pnl:+.2f}%\n"
             f"Entry: ${active['entry_price']}\n"
             f"Exit: ${current_price}\n"
-            f"🧊 쿨타임: ~{cooldown_until}"
+            f"🔥 쿨타임 해제됨\n"
+            f"{time_str}"
         )
