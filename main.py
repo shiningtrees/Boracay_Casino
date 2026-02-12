@@ -1,5 +1,7 @@
 import os
-from datetime import timedelta
+import sys
+import atexit
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from telegram.ext import Application
 from exchange.mexc import MexcConnector
@@ -15,6 +17,114 @@ load_dotenv()
 mexc = None
 bot = None
 casino = None
+_lock_fp = None
+_lock_path = os.path.join(os.path.dirname(__file__), ".boracay_casino_bot.lock")
+
+
+def _acquire_single_instance_lock():
+    """중복 실행 방지를 위한 PID lock 파일 획득."""
+    global _lock_fp
+    pid = os.getpid()
+
+    def _is_process_alive(check_pid: int) -> bool:
+        try:
+            os.kill(check_pid, 0)
+            return True
+        except ProcessLookupError:
+            return False
+        except PermissionError:
+            # 권한이 없더라도 프로세스는 존재한다고 본다.
+            return True
+
+    def _try_create_lock_file() -> bool:
+        global _lock_fp
+        try:
+            fd = os.open(_lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            _lock_fp = os.fdopen(fd, "w")
+            _lock_fp.write(str(pid))
+            _lock_fp.flush()
+            return True
+        except FileExistsError:
+            return False
+
+    # 1차 시도
+    if not _try_create_lock_file():
+        # 기존 lock 파일에서 PID 읽어 살아있는지 점검
+        existing_pid = None
+        try:
+            with open(_lock_path, "r") as f:
+                raw = f.read().strip()
+                if raw.isdigit():
+                    existing_pid = int(raw)
+        except Exception:
+            pass
+
+        if existing_pid and _is_process_alive(existing_pid):
+            logger.error("❌ 이미 실행 중인 봇 인스턴스가 있습니다. 새 실행을 중단합니다.")
+            return False
+
+        # stale lock으로 판단되면 제거 후 재시도
+        try:
+            os.remove(_lock_path)
+        except FileNotFoundError:
+            pass
+        except Exception as e:
+            logger.error(f"❌ lock 파일 정리 실패: {e}")
+            return False
+
+        if not _try_create_lock_file():
+            logger.error("❌ 이미 실행 중인 봇 인스턴스가 있습니다. 새 실행을 중단합니다.")
+            return False
+
+    def _release_lock():
+        try:
+            if _lock_fp:
+                _lock_fp.close()
+            if os.path.exists(_lock_path):
+                os.remove(_lock_path)
+        except Exception:
+            pass
+
+    atexit.register(_release_lock)
+    return True
+
+
+def _seconds_until_next_minute_boundary(interval_minutes: int) -> int:
+    """다음 N분 경계(예: 10분이면 00/10/20...)까지 남은 초 계산."""
+    if interval_minutes <= 0:
+        return 0
+
+    now = datetime.now()
+    total_seconds_now = now.minute * 60 + now.second
+    interval_seconds = interval_minutes * 60
+    remainder = total_seconds_now % interval_seconds
+
+    # 경계 시각에 정확히 올라왔으면 즉시 실행
+    if remainder == 0 and now.microsecond == 0:
+        return 0
+
+    return interval_seconds - remainder
+
+
+def _format_duration_ko(total_seconds: int) -> str:
+    """초 단위를 'N일 N시간 N분 N초'로 변환."""
+    seconds = max(0, int(total_seconds))
+    days, rem = divmod(seconds, 86400)
+    hours, rem = divmod(rem, 3600)
+    minutes, secs = divmod(rem, 60)
+    return f"{days}일 {hours}시간 {minutes}분 {secs}초"
+
+
+def _seconds_until_first_trade_start() -> int:
+    """설정된 첫 거래 시작 시각까지 남은 초 계산."""
+    try:
+        start_at = datetime.strptime(config.FIRST_TRADE_START_AT, "%Y-%m-%d %H:%M:%S")
+    except Exception:
+        return 0
+    now = datetime.now()
+    if now >= start_at:
+        return 0
+    return int((start_at - now).total_seconds())
 
 async def on_startup(application):
     """봇 시작 시 실행: Job 등록, 복구 및 동기화"""
@@ -44,10 +154,9 @@ async def on_startup(application):
         entry_price = active_bet.get('entry_price', 0)
         
         # 청산 예정 시간 체크
-        from datetime import datetime
         try:
             entry_time = datetime.strptime(entry_time_str, "%Y-%m-%d %H:%M:%S")
-            exit_time = entry_time + config.CYCLE_DELTA - timedelta(seconds=10)
+            exit_time = entry_time + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
             now = datetime.now()
             
             if now >= exit_time:
@@ -112,16 +221,58 @@ async def on_startup(application):
     
     if job_queue and chat_id:
         logger.info(f"🕐 [Scheduler] JobQueue 등록 중... (Cycle: {config.CYCLE_STRING})")
+
+        # 0. 프리체크 (필요 시에만 베팅 차단)
+        if config.STARTUP_PREFLIGHT_ENABLED:
+            preflight_ok, preflight_checks = casino.build_preflight_report()
+            preflight_title = (
+                "✅ [Preflight] 점검 통과"
+                if preflight_ok
+                else "❌ [Preflight] 점검 실패 - 베팅 시작 보류"
+            )
+            logger.info(preflight_title)
+            for line in preflight_checks:
+                logger.info(f"   {line}")
+
+            status_msg.append(preflight_title)
+            status_msg.extend(preflight_checks)
+        else:
+            preflight_ok = True
+            preflight_checks = []
+            logger.info("ℹ️ [Preflight] 자동 차단 비활성화 (수동 '시작점검' 버튼 사용 가능)")
+            status_msg.append("ℹ️ [Preflight] 자동 차단 비활성화")
+            status_msg.append("→ 수동 점검은 '🧪 시작점검' 버튼으로 확인")
         
-        # 1. 베팅 작업 (주기 간격, 10초 뒤 시작)
-        job_queue.run_repeating(
-            casino.job_daily_bet_callback, 
-            interval=config.CYCLE_SECONDS, 
-            first=10, 
-            data=chat_id,
-            chat_id=chat_id,
-            name="daily_bet"
-        )
+        next_bet_at = None
+        if preflight_ok:
+            # 1. 베팅 작업
+            # - 시작 시각 전: FIRST_TRADE_START_AT까지 대기
+            # - 시작 시각 후: 분 주기는 절대시각 경계 정렬, 시간 주기는 즉시 시작
+            wait_until_start = _seconds_until_first_trade_start()
+            if wait_until_start > 0:
+                first_bet_in = wait_until_start
+            elif config.CYCLE_MINUTES > 0:
+                first_bet_in = _seconds_until_next_minute_boundary(config.CYCLE_MINUTES)
+            else:
+                first_bet_in = 0
+
+            next_bet_at = datetime.now() + timedelta(seconds=first_bet_in)
+            first_bet_in_human = _format_duration_ko(first_bet_in)
+            logger.info(
+                f"🕐 [Scheduler] 첫 베팅 실행까지 {first_bet_in_human} "
+                f"(다음 실행 시각: {next_bet_at.strftime('%H:%M:%S')})"
+            )
+
+            job_queue.run_repeating(
+                casino.job_daily_bet_callback, 
+                interval=config.CYCLE_SECONDS, 
+                first=first_bet_in,
+                data=chat_id,
+                chat_id=chat_id,
+                name="daily_bet"
+            )
+        else:
+            logger.error("⛔ [Scheduler] 프리체크 실패로 daily_bet 등록을 건너뜁니다.")
         
         # 2. 상태 체크 작업 (1분 간격, 5초 뒤 시작)
         job_queue.run_repeating(
@@ -138,7 +289,19 @@ async def on_startup(application):
         # 📢 부팅 알림
         # ========================================
         
-        boot_msg = f"🎰 **Boracay Casino System Online**\n\n💰 Balance: {free:.2f} USDT\n🕐 Cycle: {config.CYCLE_STRING}"
+        boot_msg = (
+            f"🎰 **Boracay Casino System Online**\n\n"
+            f"🚦 Mode: {config.MODE_STRING}\n"
+            f"💰 Balance: {free:.2f} USDT\n"
+            f"🕐 Cycle: {config.CYCLE_STRING}\n"
+            f"⏱️ Early Exit: {config.EARLY_EXIT_SECONDS}초\n"
+            f"🕛 First Start: {config.FIRST_TRADE_START_AT}"
+        )
+
+        if next_bet_at:
+            boot_msg += f"\n⏭️ Next Bet: {next_bet_at.strftime('%Y-%m-%d %H:%M:%S')}"
+        elif config.STARTUP_PREFLIGHT_ENABLED and not preflight_ok:
+            boot_msg += "\n⛔ Next Bet: 프리체크 실패로 보류"
         
         if status_msg:
             boot_msg += "\n\n" + "\n".join(status_msg)
@@ -154,6 +317,9 @@ async def on_startup(application):
 
 def main():
     global mexc, bot, casino
+
+    if not _acquire_single_instance_lock():
+        sys.exit(1)
     
     logger.info("🎰 Boracay Casino System Initializing...")
     logger.info("==========================================")

@@ -1,0 +1,13 @@
+.git
+.gitignore
+.history
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+logs
+data
+backups
+terminals

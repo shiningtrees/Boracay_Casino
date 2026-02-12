@@ -16,7 +16,7 @@ class CasinoBot:
         # 기본 키보드 버튼 설정
         self.keyboard = [
             ["📊 상태", "💰 매도"],
-            ["❓ 도움말"]
+            ["🧪 시작점검", "❓ 도움말"]
         ]
         self.markup = ReplyKeyboardMarkup(self.keyboard, resize_keyboard=True)
         
@@ -41,6 +41,13 @@ class CasinoBot:
         # 텍스트 메시지 핸들러
         self.app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
 
+    def _balance_snapshot_text(self) -> str:
+        """잔고 스냅샷 문자열 생성."""
+        if not hasattr(self, 'scheduler') or not self.scheduler:
+            return ""
+        total_usdt, free_usdt = self.scheduler.mexc.get_balance()
+        return f"💰 Balance: {free_usdt:.2f} / {total_usdt:.2f} USDT (Free/Total)"
+
     async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         text = update.message.text.strip()
         
@@ -48,6 +55,8 @@ class CasinoBot:
             await self.sell(update, context)
         elif text == "📊 상태" or text == "상태":
             await self.status(update, context)
+        elif text == "🧪 시작점검" or text == "시작점검":
+            await self.preflight(update, context)
         elif text == "❓ 도움말" or text == "도움말":
             await self.help(update, context)
         else:
@@ -82,7 +91,7 @@ class CasinoBot:
                     from datetime import datetime, timedelta
                     try:
                         entry_dt = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
-                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=10)
+                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
                         now = datetime.now()
                         remaining = exit_dt - now
                         
@@ -109,7 +118,7 @@ class CasinoBot:
                     from datetime import datetime, timedelta
                     try:
                         entry_dt = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
-                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=10)
+                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
                         now = datetime.now()
                         remaining = exit_dt - now
                         
@@ -156,6 +165,10 @@ class CasinoBot:
                     msg = "💤 **휴식 중**\n⏰ 대기 중..."
         else:
             msg = "⚠️ 시스템 연결 대기 중..."
+
+        balance_text = self._balance_snapshot_text()
+        if balance_text:
+            msg = f"{msg}\n{balance_text}"
             
         # 답장으로 보내고 로그도 남기려면:
         await update.message.reply_text(msg, parse_mode="Markdown")
@@ -171,6 +184,26 @@ class CasinoBot:
         else:
             await update.message.reply_text("❌ 시스템 오류: 스케줄러가 연결되지 않았습니다.", reply_markup=self.markup)
 
+    async def preflight(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """시작 전 점검 결과 조회"""
+        if not hasattr(self, 'scheduler') or not self.scheduler:
+            await update.message.reply_text(
+                "⚠️ 시스템 연결 대기 중입니다. 잠시 후 다시 시도해주세요.",
+                reply_markup=self.markup,
+            )
+            return
+
+        ok, checks = self.scheduler.build_preflight_report()
+        title = "✅ **시작점검 통과**" if ok else "❌ **시작점검 실패**"
+        mode_text = "LIVE" if config.ENABLE_REAL_ORDERS else "PAPER"
+        msg = (
+            f"{title}\n"
+            f"🧪 Order Mode: `{mode_text}`\n"
+            f"🚦 Run Mode: `{config.MODE_STRING}`\n\n"
+            + "\n".join(checks)
+        )
+        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=self.markup)
+
     async def help(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         msg = (
             "🎰 **Boracay Casino 사용법**\n\n"
@@ -182,6 +215,7 @@ class CasinoBot:
             "**📱 메뉴**\n"
             "📊 **상태**: 현재 베팅 현황과 수익률 확인\n"
             "💰 **매도**: 진행 중인 게임 즉시 청산\n"
+            "🧪 **시작점검**: 실전 전 점검 결과 확인\n"
             "❓ **도움말**: 이 메시지 다시 보기\n\n"
             "**🎯 종목 선정 기준**\n"
             "• 24시간 변동률: +15% ~ +40%\n"
@@ -208,7 +242,12 @@ class CasinoBot:
                 if success:
                     # 인라인 버튼 메시지 수정 (선택 완료 표시)
                     await query.edit_message_text(
-                        text=f"✅ 선택 완료: {symbol}\n\n진입 중..."
+                        text=(
+                            f"✅ [선택 완료]\n"
+                            f"🎯 Symbol: {symbol}\n"
+                            f"⏳ 진입 처리 중...\n"
+                            f"📩 상세 체결 정보는 다음 메시지에서 안내됩니다."
+                        )
                     )
                     # 하단 메뉴 버튼 유지 (scheduler에서 진입 메시지를 보내지만 보험용)
                     # Note: scheduler의 _execute_entry에서 메시지 전송 시 버튼 포함됨

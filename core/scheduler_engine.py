@@ -14,10 +14,119 @@ class CasinoScheduler:
         self.scanner = MarketScanner(mexc)
         logger.info(f"⚙️ 스케줄러 엔진 초기화 완료 (Cycle: {config.CYCLE_STRING})")
 
+    def build_preflight_report(self):
+        """실주문 전환 전 필수 점검 리포트 생성."""
+        checks = []
+        ok = True
+
+        # 공통 체크
+        if config.CYCLE_SECONDS <= 0:
+            checks.append("❌ 주기 설정 오류: CYCLE_SECONDS <= 0")
+            ok = False
+        else:
+            checks.append(f"✅ 주기 설정: {config.CYCLE_STRING} ({config.CYCLE_SECONDS}초)")
+
+        try:
+            datetime.strptime(config.FIRST_TRADE_START_AT, "%Y-%m-%d %H:%M:%S")
+            checks.append(f"✅ 시작 시각 파싱: {config.FIRST_TRADE_START_AT}")
+        except Exception:
+            checks.append(f"❌ 시작 시각 파싱 실패: {config.FIRST_TRADE_START_AT}")
+            ok = False
+
+        if config.BET_AMOUNT_USDT < config.MIN_ORDER_USDT:
+            checks.append(
+                f"❌ 최소 주문 금액 미달: BET {config.BET_AMOUNT_USDT} < MIN {config.MIN_ORDER_USDT}"
+            )
+            ok = False
+        else:
+            checks.append(
+                f"✅ 최소 주문 금액: BET {config.BET_AMOUNT_USDT} >= MIN {config.MIN_ORDER_USDT}"
+            )
+
+        total_usdt, free_usdt = self.mexc.get_balance()
+        required = config.BET_AMOUNT_USDT + config.BALANCE_BUFFER_USDT
+        if free_usdt < required:
+            checks.append(
+                f"❌ 잔고 부족: Free {free_usdt:.2f} < Required {required:.2f} "
+                f"(Bet {config.BET_AMOUNT_USDT:.2f} + Buffer {config.BALANCE_BUFFER_USDT:.2f})"
+            )
+            ok = False
+        else:
+            checks.append(
+                f"✅ 잔고 확인: Free {free_usdt:.2f} >= Required {required:.2f}"
+            )
+
+        # 실주문 모드 추가 체크
+        if config.ENABLE_REAL_ORDERS:
+            if config.RUN_MODE != "live":
+                checks.append("❌ 실주문 보호: ENABLE_REAL_ORDERS=True 이면 RUN_MODE='live' 필요")
+                ok = False
+            else:
+                checks.append("✅ 실주문 모드 보호: RUN_MODE=live 확인")
+
+        return ok, checks
+
+    def _format_duration_ko(self, total_seconds: float) -> str:
+        seconds = max(0, int(total_seconds))
+        days, rem = divmod(seconds, 86400)
+        hours, rem = divmod(rem, 3600)
+        minutes, secs = divmod(rem, 60)
+        return f"{days}일 {hours}시간 {minutes}분 {secs}초"
+
+    def _balance_snapshot_text(self):
+        total_usdt, free_usdt = self.mexc.get_balance()
+        return f"💰 Balance: {free_usdt:.2f} / {total_usdt:.2f} USDT (Free/Total)"
+
+    async def _create_market_buy_with_retry(self, symbol: str, amount_usdt: float):
+        last_error = None
+        for attempt in range(1, config.ORDER_MAX_RETRIES + 1):
+            order = self.mexc.create_market_buy(symbol, amount_usdt)
+            if order:
+                return order
+            last_error = f"attempt={attempt}"
+            if attempt < config.ORDER_MAX_RETRIES:
+                await asyncio.sleep(config.ORDER_RETRY_DELAY_SECONDS)
+        logger.error(f"❌ 매수 재시도 실패 ({symbol}): {last_error}")
+        return None
+
+    async def _create_market_sell_with_retry(self, symbol: str):
+        last_error = None
+        for attempt in range(1, config.ORDER_MAX_RETRIES + 1):
+            order = self.mexc.create_market_sell(symbol)
+            if order:
+                return order
+            last_error = f"attempt={attempt}"
+            if attempt < config.ORDER_MAX_RETRIES:
+                await asyncio.sleep(config.ORDER_RETRY_DELAY_SECONDS)
+        logger.error(f"❌ 매도 재시도 실패 ({symbol}): {last_error}")
+        return None
+
+    @staticmethod
+    def _extract_order_price(order, fallback_price):
+        if not order:
+            return fallback_price
+        price = order.get("average") or order.get("price")
+        if price:
+            return float(price)
+        return fallback_price
+
     async def job_daily_bet_callback(self, context: ContextTypes.DEFAULT_TYPE):
         """JobQueue에 의해 실행되는 베팅 로직 (게임 모드)"""
         now = datetime.now()
         logger.info(f"🕛 [Job] 베팅 잡 실행 (Time: {now})")
+
+        # -1. 첫 거래 시작 시각 이전에는 대기
+        try:
+            first_start_at = datetime.strptime(config.FIRST_TRADE_START_AT, "%Y-%m-%d %H:%M:%S")
+            if now < first_start_at:
+                remain_text = self._format_duration_ko((first_start_at - now).total_seconds())
+                logger.info(
+                    f"🕒 [Wait] 첫 거래 시작 대기 중 "
+                    f"(Start: {config.FIRST_TRADE_START_AT}, 남은 시간: {remain_text})"
+                )
+                return
+        except Exception as e:
+            logger.warning(f"⚠️ 시작 시각 파싱 실패. 게이트 없이 진행합니다. ({e})")
         
         # 마지막 베팅 Job 시간 저장
         self.state.set_last_bet_job_time()
@@ -142,9 +251,56 @@ class CasinoScheduler:
             return
         
         logger.info(f"🎯 진입 확정: {symbol} @ ${current_price}")
-        
-        # 상태 저장
-        self.state.set_active_bet(symbol, current_price, config.BET_AMOUNT_USDT)
+
+        # 주문 안전 가드: 최소 주문 금액
+        if config.BET_AMOUNT_USDT < config.MIN_ORDER_USDT:
+            logger.error(
+                f"❌ [Guard] 최소 주문 금액 미달: {config.BET_AMOUNT_USDT} < {config.MIN_ORDER_USDT}"
+            )
+            self.state.clear_pending_selection()
+            if self.bot:
+                await self.bot.send_message(
+                    f"❌ [진입 스킵] 최소 주문 금액 미달\n"
+                    f"Configured: {config.BET_AMOUNT_USDT} USDT\n"
+                    f"Required: {config.MIN_ORDER_USDT} USDT"
+                )
+            return
+
+        # 주문 안전 가드: 잔고 부족 체크
+        total_usdt, free_usdt = self.mexc.get_balance()
+        required_usdt = config.BET_AMOUNT_USDT + config.BALANCE_BUFFER_USDT
+        if free_usdt < required_usdt:
+            logger.error(
+                f"❌ [Guard] 잔고 부족: Free={free_usdt} < Required={required_usdt}"
+            )
+            self.state.clear_pending_selection()
+            if self.bot:
+                await self.bot.send_message(
+                    f"❌ [진입 스킵] 잔고 부족\n"
+                    f"Free: {free_usdt:.2f} USDT\n"
+                    f"Need: {required_usdt:.2f} USDT "
+                    f"(Bet {config.BET_AMOUNT_USDT:.2f} + Buffer {config.BALANCE_BUFFER_USDT:.2f})"
+                )
+            return
+
+        order = None
+        if config.ENABLE_REAL_ORDERS:
+            order = await self._create_market_buy_with_retry(symbol, config.BET_AMOUNT_USDT)
+            if not order:
+                self.state.clear_pending_selection()
+                if self.bot:
+                    await self.bot.send_message(
+                        f"❌ [진입 실패] 주문 재시도 초과\n"
+                        f"Symbol: {symbol}\n"
+                        f"Bet: {config.BET_AMOUNT_USDT} USDT"
+                    )
+                return
+            logger.info(f"✅ [Order] 매수 주문 성공: {order.get('id', 'N/A')}")
+
+        final_entry_price = self._extract_order_price(order, current_price)
+
+        # 상태 저장 (주문 성공/검증 완료 후 저장)
+        self.state.set_active_bet(symbol, final_entry_price, config.BET_AMOUNT_USDT)
         self.state.clear_pending_selection()
         
         # 알림 전송
@@ -152,11 +308,13 @@ class CasinoScheduler:
         msg = (
             f"{mode_text}\n"
             f"🎯 Symbol: {symbol}\n"
-            f"💵 Entry: ${current_price}\n"
+            f"💵 Entry: ${final_entry_price}\n"
             f"💰 Amount: {config.BET_AMOUNT_USDT} USDT\n"
             f"⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
             f"📊 Change: +{selected['change']:.2f}%\n"
-            f"📌 Rule: {config.CYCLE_STRING} 뒤 자동 청산"
+            f"📌 Rule: {config.CYCLE_STRING} 뒤 자동 청산\n"
+            f"🧪 Order Mode: {'LIVE' if config.ENABLE_REAL_ORDERS else 'PAPER'}\n"
+            f"{self._balance_snapshot_text()}"
         )
         
         if self.bot:
@@ -179,8 +337,8 @@ class CasinoScheduler:
             return
 
         entry_time = datetime.strptime(active["entry_time"], "%Y-%m-%d %H:%M:%S")
-        # POC: 주기보다 10초 일찍 청산하여 다음 주기에 바로 진입 가능하게 함
-        exit_time = entry_time + config.CYCLE_DELTA - timedelta(seconds=10)
+        # 주기보다 N초 일찍 청산
+        exit_time = entry_time + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
         now = datetime.now()
         
         if now >= exit_time:
@@ -192,6 +350,20 @@ class CasinoScheduler:
             if not current_price:
                 logger.error(f"❌ 시세 조회 실패. 진입가 기준으로 청산 처리.")
                 current_price = active['entry_price']
+
+            if config.ENABLE_REAL_ORDERS:
+                sell_order = await self._create_market_sell_with_retry(active['symbol'])
+                if not sell_order:
+                    logger.error("❌ [Order] 자동 청산 주문 실패. 상태 유지.")
+                    if self.bot:
+                        await self.bot.send_message(
+                            f"❌ [자동 청산 실패] 주문 재시도 초과\n"
+                            f"Symbol: {active['symbol']}\n"
+                            f"포지션 상태는 유지됩니다."
+                        )
+                    return
+                current_price = self._extract_order_price(sell_order, current_price)
+                logger.info(f"✅ [Order] 자동 매도 주문 성공: {sell_order.get('id', 'N/A')}")
             
             result = self.state.clear_active_bet(current_price, reason="timeout")
             pnl = result['pnl_percent']
@@ -202,7 +374,8 @@ class CasinoScheduler:
                 f"{emoji} PNL: {pnl:+.2f}%\n"
                 f"Entry: ${active['entry_price']}\n"
                 f"Exit: ${current_price}\n"
-                f"💤 다음 사이클까지 휴식합니다."
+                f"💤 다음 사이클까지 휴식합니다.\n"
+                f"{self._balance_snapshot_text()}"
             )
             
             # 봇 인스턴스 활용하여 로깅 남기기
@@ -229,6 +402,13 @@ class CasinoScheduler:
             logger.error(f"❌ 시세 조회 실패. 수동 매도 취소.")
             return "❌ 시세 조회 실패. 다시 시도해주세요."
 
+        if config.ENABLE_REAL_ORDERS:
+            sell_order = self.mexc.create_market_sell(active['symbol'])
+            if not sell_order:
+                logger.error("❌ [Order] 수동 매도 주문 실패. 상태 유지.")
+                return "❌ [수동 청산 실패] 주문이 체결되지 않았습니다. 상태를 유지합니다."
+            current_price = self._extract_order_price(sell_order, current_price)
+
         # 청산 처리 (쿨타임도 함께 해제됨)
         result = self.state.clear_active_bet(current_price, reason="user_request")
         pnl = result['pnl_percent']
@@ -253,5 +433,6 @@ class CasinoScheduler:
             f"Entry: ${active['entry_price']}\n"
             f"Exit: ${current_price}\n"
             f"🔥 쿨타임 해제됨\n"
-            f"{time_str}"
+            f"{time_str}\n"
+            f"{self._balance_snapshot_text()}"
         )

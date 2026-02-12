@@ -1,6 +1,5 @@
 import ccxt
 import os
-import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -69,20 +68,56 @@ class MexcConnector:
     def create_market_buy(self, symbol, amount_usdt):
         """시장가 매수 (금액 기준)"""
         try:
-            # MEXC는 시장가 매수 시 'quoteOrderQty'를 지원하는지 확인 필요
-            # 일반적으로 create_order 사용
+            # MEXC spot은 시장가 매수 시 base 수량을 받는 경우가 많아, 금액->수량으로 변환
+            ticker = self.exchange.fetch_ticker(symbol)
+            last_price = ticker.get('last')
+            if not last_price or last_price <= 0:
+                print(f"❌ [MEXC] 매수 실패 ({symbol}): 유효한 현재가 없음")
+                return None
+
+            amount_base = float(amount_usdt) / float(last_price)
+            amount_base = float(self.exchange.amount_to_precision(symbol, amount_base))
+            if amount_base <= 0:
+                print(f"❌ [MEXC] 매수 실패 ({symbol}): 계산된 수량이 0")
+                return None
+
             order = self.exchange.create_order(
                 symbol, 
                 'market', 
                 'buy', 
-                amount_usdt, # amount (coin 개수)가 아니라 cost(USDT)일 수 있음. 확인 필요.
-                # CCXT MEXC spot market buy usually takes amount in base currency or quoteOrderQty
-                # 안전하게는 create_market_buy_order_with_cost (if supported) or logic to calc amount
-                # 여기서는 일단 quoteOrderQty 파라미터를 시도
+                amount_base,
             )
             return order
         except Exception as e:
             print(f"❌ [MEXC] 매수 실패 ({symbol}): {e}")
             return None
 
-    # TODO: 안전한 매수를 위한 코인 개수 계산 로직 추가 필요
+    def create_market_sell(self, symbol, amount=None):
+        """시장가 매도 (기본: 해당 코인 free 전량)"""
+        try:
+            base_currency = symbol.split('/')[0]
+
+            if amount is None:
+                balance = self.exchange.fetch_balance()
+                amount = balance['free'].get(base_currency, 0)
+
+            amount = float(amount)
+            if amount <= 0:
+                print(f"❌ [MEXC] 매도 실패 ({symbol}): 매도 가능 수량 없음")
+                return None
+
+            amount = float(self.exchange.amount_to_precision(symbol, amount))
+            if amount <= 0:
+                print(f"❌ [MEXC] 매도 실패 ({symbol}): 정밀도 반영 후 수량 0")
+                return None
+
+            order = self.exchange.create_order(
+                symbol,
+                'market',
+                'sell',
+                amount,
+            )
+            return order
+        except Exception as e:
+            print(f"❌ [MEXC] 매도 실패 ({symbol}): {e}")
+            return None

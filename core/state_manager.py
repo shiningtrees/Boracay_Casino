@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from utils.logger import logger
 import core.config as config
 
-STATE_FILE = "casino_state.json"
+STATE_FILE = os.getenv("STATE_FILE_PATH", "casino_state.json")
 
 class StateManager:
     def __init__(self):
@@ -23,6 +23,9 @@ class StateManager:
 
     def save_state(self):
         try:
+            parent_dir = os.path.dirname(STATE_FILE)
+            if parent_dir:
+                os.makedirs(parent_dir, exist_ok=True)
             with open(STATE_FILE, "w", encoding="utf-8") as f:
                 json.dump(self.state, f, indent=4, ensure_ascii=False)
         except Exception as e:
@@ -45,9 +48,11 @@ class StateManager:
         if entry_time is None:
             entry_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
-        # 쿨타임 설정: 진입 시간 + 설정된 주기 - 20초 (다음 주기 시작 시점보다 여유있게 해제)
+        # 쿨타임 설정: 진입 시간 + 설정된 주기 - 버퍼
         et = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
-        cooldown_until = (et + config.CYCLE_DELTA - timedelta(seconds=20)).strftime("%Y-%m-%d %H:%M:%S")
+        cooldown_until = (
+            et + config.CYCLE_DELTA - timedelta(seconds=config.COOLDOWN_RELEASE_BUFFER_SECONDS)
+        ).strftime("%Y-%m-%d %H:%M:%S")
             
         self.state["active_bet"] = {
             "symbol": symbol,

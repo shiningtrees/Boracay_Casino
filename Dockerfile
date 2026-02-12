@@ -1,9 +1,10 @@
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
-# 시스템 의존성 설치 (필요시)
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+# 런타임 기본 설정
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
 # 패키지 설치
 COPY requirements.txt .

@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
   casino:
     build: .
     container_name: boracay_casino
-    restart: unless-stopped
+    restart: always
     env_file:
       - .env
     volumes:
@@ -12,3 +10,5 @@ services:
       - ./logs:/app/logs
     environment:
       - TZ=Asia/Seoul
+      - STATE_FILE_PATH=/app/data/casino_state.json
+    command: ["python", "main.py"]
