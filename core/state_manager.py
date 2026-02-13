@@ -19,7 +19,7 @@ class StateManager:
                     return data
             except Exception as e:
                 logger.error(f"⚠️ 상태 파일 로드 실패: {e}")
-        return {"active_bet": None, "history": [], "last_bet_job_time": None}
+        return {"active_bet": None, "history": [], "pending_selection": None, "cooldown_until": None, "last_bet_job_time": None}
 
     def save_state(self):
         try:
@@ -71,8 +71,8 @@ class StateManager:
             bet["exit_time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             bet["exit_reason"] = reason
             
-            # 수익률 계산 (단순화)
-            if bet["entry_price"] and exit_price:
+            # 수익률 계산
+            if bet["entry_price"] and exit_price and bet["entry_price"] > 0:
                 pnl = (exit_price - bet["entry_price"]) / bet["entry_price"] * 100
                 bet["pnl_percent"] = round(pnl, 2)
             else:

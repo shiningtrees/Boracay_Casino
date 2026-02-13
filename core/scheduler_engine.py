@@ -14,58 +14,6 @@ class CasinoScheduler:
         self.scanner = MarketScanner(mexc)
         logger.info(f"⚙️ 스케줄러 엔진 초기화 완료 (Cycle: {config.CYCLE_STRING})")
 
-    def build_preflight_report(self):
-        """실주문 전환 전 필수 점검 리포트 생성."""
-        checks = []
-        ok = True
-
-        # 공통 체크
-        if config.CYCLE_SECONDS <= 0:
-            checks.append("❌ 주기 설정 오류: CYCLE_SECONDS <= 0")
-            ok = False
-        else:
-            checks.append(f"✅ 주기 설정: {config.CYCLE_STRING} ({config.CYCLE_SECONDS}초)")
-
-        try:
-            datetime.strptime(config.FIRST_TRADE_START_AT, "%Y-%m-%d %H:%M:%S")
-            checks.append(f"✅ 시작 시각 파싱: {config.FIRST_TRADE_START_AT}")
-        except Exception:
-            checks.append(f"❌ 시작 시각 파싱 실패: {config.FIRST_TRADE_START_AT}")
-            ok = False
-
-        if config.BET_AMOUNT_USDT < config.MIN_ORDER_USDT:
-            checks.append(
-                f"❌ 최소 주문 금액 미달: BET {config.BET_AMOUNT_USDT} < MIN {config.MIN_ORDER_USDT}"
-            )
-            ok = False
-        else:
-            checks.append(
-                f"✅ 최소 주문 금액: BET {config.BET_AMOUNT_USDT} >= MIN {config.MIN_ORDER_USDT}"
-            )
-
-        total_usdt, free_usdt = self.mexc.get_balance()
-        required = config.BET_AMOUNT_USDT + config.BALANCE_BUFFER_USDT
-        if free_usdt < required:
-            checks.append(
-                f"❌ 잔고 부족: Free {free_usdt:.2f} < Required {required:.2f} "
-                f"(Bet {config.BET_AMOUNT_USDT:.2f} + Buffer {config.BALANCE_BUFFER_USDT:.2f})"
-            )
-            ok = False
-        else:
-            checks.append(
-                f"✅ 잔고 확인: Free {free_usdt:.2f} >= Required {required:.2f}"
-            )
-
-        # 실주문 모드 추가 체크
-        if config.ENABLE_REAL_ORDERS:
-            if config.RUN_MODE != "live":
-                checks.append("❌ 실주문 보호: ENABLE_REAL_ORDERS=True 이면 RUN_MODE='live' 필요")
-                ok = False
-            else:
-                checks.append("✅ 실주문 모드 보호: RUN_MODE=live 확인")
-
-        return ok, checks
-
     def _format_duration_ko(self, total_seconds: float) -> str:
         seconds = max(0, int(total_seconds))
         days, rem = divmod(seconds, 86400)
@@ -115,10 +63,10 @@ class CasinoScheduler:
         now = datetime.now()
         logger.info(f"🕛 [Job] 베팅 잡 실행 (Time: {now})")
 
-        # -1. 첫 거래 시작 시각 이전에는 대기
+        # -1. 첫 거래 시작 시각 이전에는 대기 (2초 여유)
         try:
             first_start_at = datetime.strptime(config.FIRST_TRADE_START_AT, "%Y-%m-%d %H:%M:%S")
-            if now < first_start_at:
+            if now < first_start_at - timedelta(seconds=2):
                 remain_text = self._format_duration_ko((first_start_at - now).total_seconds())
                 logger.info(
                     f"🕒 [Wait] 첫 거래 시작 대기 중 "
@@ -134,12 +82,17 @@ class CasinoScheduler:
         # 0. 쿨타임 체크
         cooldown_until = self.state.get_cooldown()
         if cooldown_until:
-            now_str = now.strftime("%Y-%m-%d %H:%M:%S")
-            if now_str < cooldown_until:
-                logger.info(f"🧊 [Skip] 쿨타임 중입니다. (현재: {now_str} < 해제: {cooldown_until})")
-                return
-            else:
-                logger.info("🔥 쿨타임 해제됨. 베팅 시도.")
+            try:
+                cooldown_dt = datetime.strptime(cooldown_until, "%Y-%m-%d %H:%M:%S")
+                if now < cooldown_dt:
+                    logger.info(f"🧊 [Skip] 쿨타임 중입니다. (현재: {now} < 해제: {cooldown_until})")
+                    return
+                else:
+                    logger.info("🔥 쿨타임 해제됨. 베팅 시도.")
+                    self.state.state["cooldown_until"] = None
+                    self.state.save_state()
+            except ValueError:
+                logger.warning(f"⚠️ 쿨타임 파싱 실패: {cooldown_until}. 무시하고 진행.")
                 self.state.state["cooldown_until"] = None
                 self.state.save_state()
         

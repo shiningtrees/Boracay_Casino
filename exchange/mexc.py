@@ -1,6 +1,7 @@
 import ccxt
 import os
 from dotenv import load_dotenv
+from utils.logger import logger
 
 load_dotenv()
 
@@ -10,7 +11,7 @@ class MexcConnector:
         self.secret_key = os.getenv("MEXC_SECRET_KEY")
         
         if not self.api_key or not self.secret_key:
-            print("⚠️ [MEXC] API Key or Secret is missing in .env")
+            logger.warning("⚠️ [MEXC] API Key or Secret is missing in .env")
         
         self.exchange = ccxt.mexc({
             'apiKey': self.api_key,
@@ -29,7 +30,7 @@ class MexcConnector:
             free_usdt = balance['free'].get('USDT', 0)
             return usdt, free_usdt
         except Exception as e:
-            print(f"❌ [MEXC] 잔고 조회 실패: {e}")
+            logger.error(f"❌ [MEXC] 잔고 조회 실패: {e}")
             return 0, 0
     
     def get_holdings(self, exclude=['USDT']):
@@ -53,7 +54,7 @@ class MexcConnector:
             
             return holdings
         except Exception as e:
-            print(f"❌ [MEXC] 보유 코인 조회 실패: {e}")
+            logger.error(f"❌ [MEXC] 보유 코인 조회 실패: {e}")
             return []
 
     def get_ticker(self, symbol):
@@ -62,7 +63,7 @@ class MexcConnector:
             ticker = self.exchange.fetch_ticker(symbol)
             return ticker['last']
         except Exception as e:
-            print(f"❌ [MEXC] 시세 조회 실패 ({symbol}): {e}")
+            logger.error(f"❌ [MEXC] 시세 조회 실패 ({symbol}): {e}")
             return None
 
     def create_market_buy(self, symbol, amount_usdt):
@@ -72,13 +73,13 @@ class MexcConnector:
             ticker = self.exchange.fetch_ticker(symbol)
             last_price = ticker.get('last')
             if not last_price or last_price <= 0:
-                print(f"❌ [MEXC] 매수 실패 ({symbol}): 유효한 현재가 없음")
+                logger.error(f"❌ [MEXC] 매수 실패 ({symbol}): 유효한 현재가 없음")
                 return None
 
             amount_base = float(amount_usdt) / float(last_price)
             amount_base = float(self.exchange.amount_to_precision(symbol, amount_base))
             if amount_base <= 0:
-                print(f"❌ [MEXC] 매수 실패 ({symbol}): 계산된 수량이 0")
+                logger.error(f"❌ [MEXC] 매수 실패 ({symbol}): 계산된 수량이 0")
                 return None
 
             order = self.exchange.create_order(
@@ -89,7 +90,7 @@ class MexcConnector:
             )
             return order
         except Exception as e:
-            print(f"❌ [MEXC] 매수 실패 ({symbol}): {e}")
+            logger.error(f"❌ [MEXC] 매수 실패 ({symbol}): {e}")
             return None
 
     def create_market_sell(self, symbol, amount=None):
@@ -103,12 +104,12 @@ class MexcConnector:
 
             amount = float(amount)
             if amount <= 0:
-                print(f"❌ [MEXC] 매도 실패 ({symbol}): 매도 가능 수량 없음")
+                logger.error(f"❌ [MEXC] 매도 실패 ({symbol}): 매도 가능 수량 없음")
                 return None
 
             amount = float(self.exchange.amount_to_precision(symbol, amount))
             if amount <= 0:
-                print(f"❌ [MEXC] 매도 실패 ({symbol}): 정밀도 반영 후 수량 0")
+                logger.error(f"❌ [MEXC] 매도 실패 ({symbol}): 정밀도 반영 후 수량 0")
                 return None
 
             order = self.exchange.create_order(
@@ -119,5 +120,5 @@ class MexcConnector:
             )
             return order
         except Exception as e:
-            print(f"❌ [MEXC] 매도 실패 ({symbol}): {e}")
+            logger.error(f"❌ [MEXC] 매도 실패 ({symbol}): {e}")
             return None

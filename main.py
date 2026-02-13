@@ -222,57 +222,32 @@ async def on_startup(application):
     if job_queue and chat_id:
         logger.info(f"🕐 [Scheduler] JobQueue 등록 중... (Cycle: {config.CYCLE_STRING})")
 
-        # 0. 프리체크 (필요 시에만 베팅 차단)
-        if config.STARTUP_PREFLIGHT_ENABLED:
-            preflight_ok, preflight_checks = casino.build_preflight_report()
-            preflight_title = (
-                "✅ [Preflight] 점검 통과"
-                if preflight_ok
-                else "❌ [Preflight] 점검 실패 - 베팅 시작 보류"
-            )
-            logger.info(preflight_title)
-            for line in preflight_checks:
-                logger.info(f"   {line}")
-
-            status_msg.append(preflight_title)
-            status_msg.extend(preflight_checks)
+        # 1. 베팅 작업
+        # - 시작 시각 전: FIRST_TRADE_START_AT까지 대기
+        # - 시작 시각 후: 분 주기는 절대시각 경계 정렬, 시간 주기는 즉시 시작
+        wait_until_start = _seconds_until_first_trade_start()
+        if wait_until_start > 0:
+            first_bet_in = wait_until_start
+        elif config.CYCLE_MINUTES > 0:
+            first_bet_in = _seconds_until_next_minute_boundary(config.CYCLE_MINUTES)
         else:
-            preflight_ok = True
-            preflight_checks = []
-            logger.info("ℹ️ [Preflight] 자동 차단 비활성화 (수동 '시작점검' 버튼 사용 가능)")
-            status_msg.append("ℹ️ [Preflight] 자동 차단 비활성화")
-            status_msg.append("→ 수동 점검은 '🧪 시작점검' 버튼으로 확인")
-        
-        next_bet_at = None
-        if preflight_ok:
-            # 1. 베팅 작업
-            # - 시작 시각 전: FIRST_TRADE_START_AT까지 대기
-            # - 시작 시각 후: 분 주기는 절대시각 경계 정렬, 시간 주기는 즉시 시작
-            wait_until_start = _seconds_until_first_trade_start()
-            if wait_until_start > 0:
-                first_bet_in = wait_until_start
-            elif config.CYCLE_MINUTES > 0:
-                first_bet_in = _seconds_until_next_minute_boundary(config.CYCLE_MINUTES)
-            else:
-                first_bet_in = 0
+            first_bet_in = 0
 
-            next_bet_at = datetime.now() + timedelta(seconds=first_bet_in)
-            first_bet_in_human = _format_duration_ko(first_bet_in)
-            logger.info(
-                f"🕐 [Scheduler] 첫 베팅 실행까지 {first_bet_in_human} "
-                f"(다음 실행 시각: {next_bet_at.strftime('%H:%M:%S')})"
-            )
+        next_bet_at = datetime.now() + timedelta(seconds=first_bet_in)
+        first_bet_in_human = _format_duration_ko(first_bet_in)
+        logger.info(
+            f"🕐 [Scheduler] 첫 베팅 실행까지 {first_bet_in_human} "
+            f"(다음 실행 시각: {next_bet_at.strftime('%H:%M:%S')})"
+        )
 
-            job_queue.run_repeating(
-                casino.job_daily_bet_callback, 
-                interval=config.CYCLE_SECONDS, 
-                first=first_bet_in,
-                data=chat_id,
-                chat_id=chat_id,
-                name="daily_bet"
-            )
-        else:
-            logger.error("⛔ [Scheduler] 프리체크 실패로 daily_bet 등록을 건너뜁니다.")
+        job_queue.run_repeating(
+            casino.job_daily_bet_callback, 
+            interval=config.CYCLE_SECONDS, 
+            first=first_bet_in,
+            data=chat_id,
+            chat_id=chat_id,
+            name="daily_bet"
+        )
         
         # 2. 상태 체크 작업 (1분 간격, 5초 뒤 시작)
         job_queue.run_repeating(
@@ -298,10 +273,7 @@ async def on_startup(application):
             f"🕛 First Start: {config.FIRST_TRADE_START_AT}"
         )
 
-        if next_bet_at:
-            boot_msg += f"\n⏭️ Next Bet: {next_bet_at.strftime('%Y-%m-%d %H:%M:%S')}"
-        elif config.STARTUP_PREFLIGHT_ENABLED and not preflight_ok:
-            boot_msg += "\n⛔ Next Bet: 프리체크 실패로 보류"
+        boot_msg += f"\n⏭️ Next Bet: {next_bet_at.strftime('%Y-%m-%d %H:%M:%S')}"
         
         if status_msg:
             boot_msg += "\n\n" + "\n".join(status_msg)

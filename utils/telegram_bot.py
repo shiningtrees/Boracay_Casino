@@ -1,8 +1,10 @@
 import os
 import asyncio
+from datetime import datetime, timedelta
 from telegram import Update, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters, CallbackQueryHandler
 from dotenv import load_dotenv
+from utils.logger import logger
 import core.config as config
 
 load_dotenv()
@@ -16,12 +18,12 @@ class CasinoBot:
         # 기본 키보드 버튼 설정
         self.keyboard = [
             ["📊 상태", "💰 매도"],
-            ["🧪 시작점검", "❓ 도움말"]
+            ["❓ 도움말"]
         ]
         self.markup = ReplyKeyboardMarkup(self.keyboard, resize_keyboard=True)
         
         if not self.token:
-            print("⚠️ [Telegram] Token is missing!")
+            logger.warning("⚠️ [Telegram] Token is missing!")
             return
 
         builder = Application.builder().token(self.token)
@@ -41,6 +43,22 @@ class CasinoBot:
         # 텍스트 메시지 핸들러
         self.app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
 
+    @staticmethod
+    def _calc_exit_time_info(entry_time: str) -> str:
+        """자동 청산 예정 시간 문자열 계산"""
+        try:
+            entry_dt = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
+            exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
+            remaining = exit_dt - datetime.now()
+            if remaining.total_seconds() > 0:
+                remaining_minutes = int(remaining.total_seconds() / 60)
+                remaining_seconds = int(remaining.total_seconds() % 60)
+                exit_time_str = exit_dt.strftime("%H:%M:%S")
+                return f"⏰ 자동 청산: `{exit_time_str}`\n⏳ 남은 시간: 약 {remaining_minutes}분 {remaining_seconds}초"
+            return "⏰ 자동 청산: 곧 실행"
+        except Exception:
+            return f"⏰ Rule: {config.CYCLE_STRING} 뒤 자동 청산"
+
     def _balance_snapshot_text(self) -> str:
         """잔고 스냅샷 문자열 생성."""
         if not hasattr(self, 'scheduler') or not self.scheduler:
@@ -55,8 +73,6 @@ class CasinoBot:
             await self.sell(update, context)
         elif text == "📊 상태" or text == "상태":
             await self.status(update, context)
-        elif text == "🧪 시작점검" or text == "시작점검":
-            await self.preflight(update, context)
         elif text == "❓ 도움말" or text == "도움말":
             await self.help(update, context)
         else:
@@ -83,27 +99,11 @@ class CasinoBot:
                 
                 # 실제 현재가 조회
                 current_price = self.scheduler.mexc.get_ticker(symbol)
+                time_info = self._calc_exit_time_info(entry_time)
+                
                 if current_price:
-                    pnl = round((current_price - entry_price) / entry_price * 100, 2)
-                    emoji = "🔴" if pnl > 0 else "🔵" # 상승: 빨강, 하락: 파랑 (국내 정서)
-                    
-                    # 자동 청산 예정 시간 계산
-                    from datetime import datetime, timedelta
-                    try:
-                        entry_dt = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
-                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
-                        now = datetime.now()
-                        remaining = exit_dt - now
-                        
-                        if remaining.total_seconds() > 0:
-                            remaining_minutes = int(remaining.total_seconds() / 60)
-                            remaining_seconds = int(remaining.total_seconds() % 60)
-                            exit_time_str = exit_dt.strftime("%H:%M:%S")
-                            time_info = f"⏰ 자동 청산: `{exit_time_str}`\n⏳ 남은 시간: 약 {remaining_minutes}분 {remaining_seconds}초"
-                        else:
-                            time_info = "⏰ 자동 청산: 곧 실행"
-                    except:
-                        time_info = f"⏰ Rule: {config.CYCLE_STRING} 뒤 자동 청산"
+                    pnl = round((current_price - entry_price) / entry_price * 100, 2) if entry_price else 0.0
+                    emoji = "🔴" if pnl > 0 else "🔵"  # 상승: 빨강, 하락: 파랑 (국내 정서)
                     
                     msg = (
                         f"🎲 **진행 중인 게임**\n"
@@ -114,24 +114,6 @@ class CasinoBot:
                         f"{time_info}"
                     )
                 else:
-                    # 현재가 조회 실패 시에도 청산 시간 표시
-                    from datetime import datetime, timedelta
-                    try:
-                        entry_dt = datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S")
-                        exit_dt = entry_dt + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
-                        now = datetime.now()
-                        remaining = exit_dt - now
-                        
-                        if remaining.total_seconds() > 0:
-                            remaining_minutes = int(remaining.total_seconds() / 60)
-                            remaining_seconds = int(remaining.total_seconds() % 60)
-                            exit_time_str = exit_dt.strftime("%H:%M:%S")
-                            time_info = f"⏰ 자동 청산: `{exit_time_str}`\n⏳ 남은 시간: 약 {remaining_minutes}분 {remaining_seconds}초"
-                        else:
-                            time_info = "⏰ 자동 청산: 곧 실행"
-                    except:
-                        time_info = ""
-                    
                     msg = (
                         f"🎲 **진행 중인 게임**\n"
                         f"Symbol: `{symbol}`\n"
@@ -142,7 +124,6 @@ class CasinoBot:
                     )
             else:
                 # 다음 베팅 시간 정보 추가
-                from datetime import datetime
                 next_bet = self.scheduler.state.get_next_bet_time()
                 
                 if next_bet:
@@ -184,26 +165,6 @@ class CasinoBot:
         else:
             await update.message.reply_text("❌ 시스템 오류: 스케줄러가 연결되지 않았습니다.", reply_markup=self.markup)
 
-    async def preflight(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        """시작 전 점검 결과 조회"""
-        if not hasattr(self, 'scheduler') or not self.scheduler:
-            await update.message.reply_text(
-                "⚠️ 시스템 연결 대기 중입니다. 잠시 후 다시 시도해주세요.",
-                reply_markup=self.markup,
-            )
-            return
-
-        ok, checks = self.scheduler.build_preflight_report()
-        title = "✅ **시작점검 통과**" if ok else "❌ **시작점검 실패**"
-        mode_text = "LIVE" if config.ENABLE_REAL_ORDERS else "PAPER"
-        msg = (
-            f"{title}\n"
-            f"🧪 Order Mode: `{mode_text}`\n"
-            f"🚦 Run Mode: `{config.MODE_STRING}`\n\n"
-            + "\n".join(checks)
-        )
-        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=self.markup)
-
     async def help(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         msg = (
             "🎰 **Boracay Casino 사용법**\n\n"
@@ -215,7 +176,6 @@ class CasinoBot:
             "**📱 메뉴**\n"
             "📊 **상태**: 현재 베팅 현황과 수익률 확인\n"
             "💰 **매도**: 진행 중인 게임 즉시 청산\n"
-            "🧪 **시작점검**: 실전 전 점검 결과 확인\n"
             "❓ **도움말**: 이 메시지 다시 보기\n\n"
             "**🎯 종목 선정 기준**\n"
             "• 24시간 변동률: +15% ~ +40%\n"
@@ -289,7 +249,7 @@ class CasinoBot:
             msg_lines = [
                 "🎰 **오늘의 후보 코인이 나왔습니다!**",
                 "",
-                "📊 아래 3개 중 하나를 선택하세요:",
+                f"📊 아래 {len(candidates)}개 중 하나를 선택하세요:",
                 ""
             ]
             
@@ -356,5 +316,5 @@ class CasinoBot:
     def run(self):
         """봇 실행 (Polling)"""
         if self.app:
-            print("🤖 Telegram Bot Started...")
+            logger.info("🤖 Telegram Bot Started...")
             self.app.run_polling()
