@@ -1,0 +1,218 @@
+
+🎰 Boracay Casino Backtest Engine
+================================================================================
+  Mode: 스캐너 (매 사이클마다 상위 20개 중 랜덤 선택)
+  Period: 2025-01-01 ~ 2026-02-14
+  Cycles: [48, 72, 96]
+================================================================================
+
+
+🎰 다중 주기 백테스트 시작
+  - Mode: 스캐너 (매 사이클 랜덤 선택)
+  - Period: 2025-01-01 ~ 2026-02-14
+  - Cycles: [48, 72, 96]
+
+============================================================
+🎰 백테스트 시작: 스캐너 모드 (주기: 48시간)
+   매 사이클마다 상위 20개 중 랜덤 선택
+============================================================
+📊 스캐너 시뮬레이션 시작...
+  - 기간: 2025-01-01 ~ 2026-02-14
+  Cycle 1: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 2: H/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 3: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 4: AZTEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 5: H/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 6: AIV/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 7: PIPPIN/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 8: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 9: H/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 10: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 11: H/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 12: OM/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 13: AZTEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 14: ENS/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 15: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 16: AZTEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 17: ZEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 18: ZEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 19: PIPPIN/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 20: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 21: AZTEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 22: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 23: COMP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 24: ZEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 25: PIPPIN/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 26: PIPPIN/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 27: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 28: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 29: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 30: OM/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 31: OM/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 32: ZEC/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 33: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 34: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 35: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 36: OM/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 37: PIPPIN/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 38: H/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 39: CTC/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 40: AIV/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 41: AZTEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 42: COMP/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 43: PIPPIN/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 44: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 45: OM/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 46: TAO/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 47: H/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 48: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 49: TAO/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 50: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 51: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 52: ZEC/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 53: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 54: H/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 55: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 56: TAO/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 57: AZTEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 58: AZTEC/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 59: ZEC/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 60: CTC/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 61: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 62: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 63: CTC/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 64: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 65: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 66: COMP/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 67: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 68: AIV/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 69: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 70: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 71: AIV/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 72: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 73: AIXDROP/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 74: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 75: TAO/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 76: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 77: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 78: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 79: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 80: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 81: PIPPIN/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 82: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 83: AIV/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 84: AIV/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 85: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 86: OM/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 87: AIV/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 88: ENS/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 89: MUBARAK/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 90: COMP/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 91: KLARA/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 92: TAO/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 93: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 94: OM/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 95: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 96: TAL/USDT 선정
+    - 진입 데이터 없음, 스킵
+  Cycle 97: COMP/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 98: TAO/USDT 선정
+    - 에러: mexc {"code":429,"msg":"Too Many Requests"}
+  Cycle 99: KLARA/USDT 선정
+    - 진입 데이터 없음, 

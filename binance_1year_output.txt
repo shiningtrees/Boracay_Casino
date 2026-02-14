@@ -1,0 +1,1823 @@
+
+============================================================
+🎰 Binance 백테스트 (스캐너 모드, 48h)
+============================================================
+📋 공통 코인 목록 로드 중...
+✅ 공통 코인: 383개
+🎲 스캐너 시뮬레이션 시작 (공통 코인 풀)
+  Cycle 1: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 2: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $58.93, PNL: -0.89%
+  Cycle 3: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $554.80, PNL: -0.68%
+  Cycle 4: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $50.24, PNL: -15.42%
+  Cycle 5: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $440.80, PNL: -5.43%
+  Cycle 6: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $445.10, PNL: +0.98%
+  Cycle 7: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $31.65, PNL: -0.38%
+  Cycle 8: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 9: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $83.85, PNL: +4.07%
+  Cycle 10: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 11: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 12: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $373.50, PNL: -6.23%
+  Cycle 13: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 14: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $4.49, PNL: -5.82%
+  Cycle 15: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $70.65, PNL: +4.85%
+  Cycle 16: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $39.30, PNL: -10.72%
+  Cycle 17: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → stop_loss @ $291.50, PNL: -25.92%
+  Cycle 18: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $352.40, PNL: -11.01%
+  Cycle 19: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $318.00, PNL: -9.76%
+  Cycle 20: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $51.41, PNL: +1.22%
+  Cycle 21: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $33.10, PNL: +1.72%
+  Cycle 22: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 23: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $375.30, PNL: -1.86%
+  Cycle 24: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $7.22, PNL: -4.89%
+  Cycle 25: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $26.71, PNL: -1.80%
+  Cycle 26: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $7.54, PNL: -1.02%
+  Cycle 27: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $27.61, PNL: +5.06%
+  Cycle 28: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $7.78, PNL: -8.32%
+  Cycle 29: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 30: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $21.32, PNL: -3.22%
+  Cycle 31: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $36.05, PNL: -4.71%
+  Cycle 32: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $7.11, PNL: -0.52%
+  Cycle 33: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 34: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $43.63, PNL: -13.96%
+  Cycle 35: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $16.66, PNL: -6.51%
+  Cycle 36: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $238.10, PNL: -8.39%
+  Cycle 37: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 38: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $43.30, PNL: +2.17%
+  Cycle 39: MUBARAK/USDT
+  📊 [MUBARAK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 40: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 41: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 42: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 43: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 44: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $6.21, PNL: -3.88%
+  Cycle 45: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $39.46, PNL: +8.86%
+  Cycle 46: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $38.99, PNL: -1.19%
+  Cycle 47: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 48: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 49: MUBARAK/USDT
+  📊 [MUBARAK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → stop_loss @ $0.03, PNL: -25.56%
+  Cycle 50: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 51: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $34.89, PNL: -5.16%
+  Cycle 52: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $14.54, PNL: -1.89%
+  Cycle 53: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 54: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 55: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 56: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 57: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $34.18, PNL: +3.29%
+  Cycle 58: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $18.17, PNL: +4.49%
+  Cycle 59: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 60: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $40.56, PNL: -5.03%
+  Cycle 61: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $18.68, PNL: +0.54%
+  Cycle 62: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.39, PNL: -7.59%
+  Cycle 63: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 64: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $421.70, PNL: +12.94%
+  Cycle 65: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $43.70, PNL: +4.20%
+  Cycle 66: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 67: MUBARAK/USDT
+  📊 [MUBARAK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → trailing_stop @ $0.06, PNL: +19.94%
+  Cycle 68: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 69: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 70: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 71: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $23.71, PNL: +6.71%
+  Cycle 72: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.41, PNL: -3.89%
+  Cycle 73: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $54.40, PNL: +9.70%
+  Cycle 74: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 75: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 76: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.32, PNL: +7.41%
+  Cycle 77: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $54.48, PNL: +2.66%
+  Cycle 78: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $47.44, PNL: -12.92%
+  Cycle 79: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 80: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $21.91, PNL: +5.18%
+  Cycle 81: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.29, PNL: -6.65%
+  Cycle 82: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 83: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $52.48, PNL: -5.13%
+  Cycle 84: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $50.44, PNL: -3.89%
+  Cycle 85: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $51.69, PNL: +2.48%
+  Cycle 86: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 87: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.22, PNL: +2.59%
+  Cycle 88: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 89: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $45.97, PNL: +0.72%
+  Cycle 90: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $40.13, PNL: +4.86%
+  Cycle 91: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $36.94, PNL: -7.95%
+  Cycle 92: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.22, PNL: +9.00%
+  Cycle 93: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $41.12, PNL: -4.55%
+  Cycle 94: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $319.60, PNL: -0.56%
+  Cycle 95: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 96: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $46.83, PNL: +2.32%
+  Cycle 97: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 98: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $434.00, PNL: +10.83%
+  Cycle 99: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 100: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.24, PNL: +0.30%
+  Cycle 101: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $53.77, PNL: +3.72%
+  Cycle 102: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.28, PNL: -17.60%
+  Cycle 103: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.28, PNL: -0.07%
+  Cycle 104: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $427.50, PNL: +0.16%
+  Cycle 105: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 106: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $352.80, PNL: -7.62%
+  Cycle 107: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $24.55, PNL: -8.12%
+  Cycle 108: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $356.60, PNL: +6.67%
+  Cycle 109: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.27, PNL: +6.82%
+  Cycle 110: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.28, PNL: +1.86%
+  Cycle 111: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $29.35, PNL: +4.26%
+  Cycle 112: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $39.84, PNL: +0.89%
+  Cycle 113: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 114: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.26, PNL: +2.23%
+  Cycle 115: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $355.50, PNL: -4.97%
+  Cycle 116: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $46.42, PNL: -0.88%
+  Cycle 117: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $27.73, PNL: +9.56%
+  Cycle 118: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 119: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 120: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $42.32, PNL: -1.21%
+  Cycle 121: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $43.20, PNL: -3.20%
+  Cycle 122: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 123: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 124: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $22.36, PNL: -2.66%
+  Cycle 125: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 126: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $43.43, PNL: +1.80%
+  Cycle 127: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $357.60, PNL: +6.65%
+  Cycle 128: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $24.63, PNL: +1.73%
+  Cycle 129: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.21, PNL: -8.30%
+  Cycle 130: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $359.00, PNL: +4.66%
+  Cycle 131: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $345.50, PNL: -3.76%
+  Cycle 132: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $22.76, PNL: -2.11%
+  Cycle 133: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $55.18, PNL: +5.91%
+  Cycle 134: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.16, PNL: -6.86%
+  Cycle 135: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $40.97, PNL: +2.84%
+  Cycle 136: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $42.02, PNL: +2.56%
+  Cycle 137: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 138: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.18, PNL: +0.00%
+  Cycle 139: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.92, PNL: +6.64%
+  Cycle 140: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.17, PNL: -2.87%
+  Cycle 141: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $42.06, PNL: -0.59%
+  Cycle 142: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → stop_loss @ $0.50, PNL: -33.04%
+  Cycle 143: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 144: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $35.12, PNL: -3.09%
+  Cycle 145: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.12, PNL: -8.06%
+  Cycle 146: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.41, PNL: +1.61%
+  Cycle 147: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → trailing_stop @ $279.00, PNL: +18.27%
+  Cycle 148: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.36, PNL: -9.65%
+  Cycle 149: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 150: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.11, PNL: -2.41%
+  Cycle 151: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 152: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $481.50, PNL: +9.38%
+  Cycle 153: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.27, PNL: -11.99%
+  Cycle 154: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $398.80, PNL: -18.48%
+  Cycle 155: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → trailing_stop @ $0.30, PNL: +19.39%
+  Cycle 156: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.10, PNL: +8.93%
+  Cycle 157: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $531.25, PNL: -10.81%
+  Cycle 158: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.09, PNL: -8.23%
+  Cycle 159: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $32.49, PNL: -1.90%
+  Cycle 160: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $4.43, PNL: -7.52%
+  Cycle 161: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $4.37, PNL: -1.17%
+  Cycle 162: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.23, PNL: -7.63%
+  Cycle 163: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.04, PNL: -3.86%
+  Cycle 164: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.04, PNL: +4.73%
+  Cycle 165: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $4.14, PNL: +3.58%
+  Cycle 166: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $298.50, PNL: -3.49%
+  Cycle 167: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.08, PNL: -7.31%
+  Cycle 168: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $275.90, PNL: -3.93%
+  Cycle 169: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $291.00, PNL: +5.47%
+  Cycle 170: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $3.91, PNL: -1.54%
+  Cycle 171: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $406.08, PNL: +19.40%
+  Cycle 172: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $11.37, PNL: +0.80%
+  Cycle 173: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $292.90, PNL: +0.24%
+  Cycle 174: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $10.43, PNL: -3.87%
+  Cycle 175: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.13, PNL: -12.40%
+  Cycle 176: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $2.94, PNL: -8.43%
+  Cycle 177: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.14, PNL: +14.08%
+  Cycle 178: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $430.67, PNL: -3.58%
+  Cycle 179: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $449.34, PNL: +4.34%
+  Cycle 180: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.14, PNL: +5.28%
+  Cycle 181: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.07, PNL: +0.96%
+  Cycle 182: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $221.70, PNL: -0.76%
+  Cycle 183: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $229.40, PNL: +3.47%
+  Cycle 184: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.08, PNL: +2.85%
+  Cycle 185: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $3.30, PNL: +7.34%
+  Cycle 186: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.08, PNL: -0.25%
+  Cycle 187: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $2.92, PNL: -9.44%
+  Cycle 188: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.08, PNL: -2.03%
+  Cycle 189: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.16, PNL: -0.97%
+  Cycle 190: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $414.54, PNL: +1.96%
+  Cycle 191: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.08, PNL: +0.80%
+  Cycle 192: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.05, PNL: +4.29%
+  Cycle 193: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.13, PNL: -4.80%
+  Cycle 194: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $1.76, PNL: -4.39%
+  Cycle 195: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $224.40, PNL: -5.44%
+  Cycle 196: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.05, PNL: -3.02%
+  Cycle 197: MUBARAK/USDT
+  📊 [MUBARAK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.02, PNL: -5.11%
+  Cycle 198: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $7.11, PNL: -15.26%
+  Cycle 199: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.04, PNL: -12.68%
+  Cycle 200: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $1.17, PNL: -14.88%
+  Cycle 201: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.03, PNL: -9.84%
+  Cycle 202: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $0.85, PNL: -9.71%
+  Cycle 203: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $233.87, PNL: -2.00%
+  Cycle 204: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 577 candles
+    → timeout @ $233.76, PNL: -0.05%
+  Cycle 205: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 315 candles
+    → timeout @ $186.30, PNL: +19.73%
+
+✅ 시뮬레이션 완료: 205 cycles, 158 trades
+  최종 잔고: 88.70 USDT
+
+============================================================
+🎰 Binance 백테스트 (스캐너 모드, 72h)
+============================================================
+📋 공통 코인 목록 로드 중...
+✅ 공통 코인: 383개
+🎲 스캐너 시뮬레이션 시작 (공통 코인 풀)
+  Cycle 1: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $3.93, PNL: +2.30%
+  Cycle 2: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $4.09, PNL: +4.03%
+  Cycle 3: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $47.15, PNL: -20.62%
+  Cycle 4: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $48.15, PNL: +2.12%
+  Cycle 5: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $455.30, PNL: +2.29%
+  Cycle 6: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 7: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $49.25, PNL: -5.07%
+  Cycle 8: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $3.50, PNL: -4.40%
+  Cycle 9: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $71.24, PNL: -6.15%
+  Cycle 10: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 11: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 12: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → stop_loss @ $24.44, PNL: -25.65%
+  Cycle 13: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 14: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 15: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 16: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $7.22, PNL: +1.79%
+  Cycle 17: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $55.17, PNL: -1.09%
+  Cycle 18: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $55.26, PNL: +0.16%
+  Cycle 19: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $7.10, PNL: -16.40%
+  Cycle 20: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $37.83, PNL: +4.97%
+  Cycle 21: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 22: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $275.00, PNL: -4.45%
+  Cycle 23: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 24: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $16.40, PNL: -0.97%
+  Cycle 25: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $41.97, PNL: +4.59%
+  Cycle 26: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $17.91, PNL: +10.83%
+  Cycle 27: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $43.01, PNL: -2.71%
+  Cycle 28: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 29: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $6.31, PNL: -7.74%
+  Cycle 30: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $224.70, PNL: -8.06%
+  Cycle 31: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 32: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $35.70, PNL: -9.07%
+  Cycle 33: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → stop_loss @ $20.71, PNL: -41.99%
+  Cycle 34: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $6.28, PNL: -7.83%
+  Cycle 35: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 36: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $30.85, PNL: -0.10%
+  Cycle 37: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $312.90, PNL: +14.16%
+  Cycle 38: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $17.39, PNL: +18.54%
+  Cycle 39: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 40: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $36.15, PNL: +10.99%
+  Cycle 41: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $353.20, PNL: -0.65%
+  Cycle 42: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $17.75, PNL: -6.13%
+  Cycle 43: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 44: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $44.26, PNL: +4.21%
+  Cycle 45: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 46: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 47: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 48: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 49: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.39, PNL: -3.78%
+  Cycle 50: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 51: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $41.32, PNL: +3.71%
+  Cycle 52: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 53: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $383.50, PNL: +8.76%
+  Cycle 54: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 55: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 56: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 57: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $340.70, PNL: -3.48%
+  Cycle 58: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 59: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $39.16, PNL: -5.82%
+  Cycle 60: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 61: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $38.90, PNL: -3.07%
+  Cycle 62: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $38.98, PNL: +0.21%
+  Cycle 63: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $18.92, PNL: +2.88%
+  Cycle 64: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 65: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $48.53, PNL: +3.63%
+  Cycle 66: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $423.70, PNL: +3.85%
+  Cycle 67: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 68: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.28, PNL: -18.49%
+  Cycle 69: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.28, PNL: +1.15%
+  Cycle 70: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 71: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 72: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 73: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $48.39, PNL: +2.61%
+  Cycle 74: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.28, PNL: +0.62%
+  Cycle 75: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 76: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $26.42, PNL: -10.89%
+  Cycle 77: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $44.94, PNL: -7.30%
+  Cycle 78: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 79: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 80: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 81: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $42.34, PNL: -5.13%
+  Cycle 82: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $43.35, PNL: +2.39%
+  Cycle 83: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 84: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $22.91, PNL: +3.81%
+  Cycle 85: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $45.79, PNL: +5.43%
+  Cycle 86: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 87: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 88: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $44.46, PNL: -3.60%
+  Cycle 89: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $58.93, PNL: +13.11%
+  Cycle 90: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 91: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → stop_loss @ $1.22, PNL: -25.34%
+  Cycle 92: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $320.80, PNL: +5.49%
+  Cycle 93: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $43.91, PNL: +0.16%
+  Cycle 94: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $214.55, PNL: +36.01%
+  Cycle 95: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → stop_loss @ $22.96, PNL: -45.41%
+  Cycle 96: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → trailing_stop @ $431.10, PNL: +13.06%
+  Cycle 97: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $15.23, PNL: -5.93%
+  Cycle 98: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.12, PNL: -1.84%
+  Cycle 99: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.12, PNL: +0.17%
+  Cycle 100: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.35, PNL: -9.58%
+  Cycle 101: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $8.70, PNL: +8.94%
+  Cycle 102: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → trailing_stop @ $485.46, PNL: +16.92%
+  Cycle 103: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $32.12, PNL: -10.00%
+  Cycle 104: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 105: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 106: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.08, PNL: -8.93%
+  Cycle 107: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $31.50, PNL: -3.05%
+  Cycle 108: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $11.56, PNL: -5.79%
+  Cycle 109: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.07, PNL: -7.64%
+  Cycle 110: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $11.71, PNL: +5.97%
+  Cycle 111: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $459.52, PNL: -12.55%
+  Cycle 112: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $11.61, PNL: +0.78%
+  Cycle 113: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $276.40, PNL: +0.18%
+  Cycle 114: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $11.28, PNL: +1.26%
+  Cycle 115: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $30.12, PNL: -3.62%
+  Cycle 116: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $280.80, PNL: -5.52%
+  Cycle 117: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.03, PNL: -11.90%
+  Cycle 118: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $24.52, PNL: -5.07%
+  Cycle 119: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $9.44, PNL: -2.38%
+  Cycle 120: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.05, PNL: +1.46%
+  Cycle 121: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $25.59, PNL: -2.18%
+  Cycle 122: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.17, PNL: +7.46%
+  Cycle 123: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $503.60, PNL: -4.12%
+  Cycle 124: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $466.70, PNL: -7.33%
+  Cycle 125: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.05, PNL: +3.07%
+  Cycle 126: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.16, PNL: +0.87%
+  Cycle 127: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.14, PNL: -11.43%
+  Cycle 128: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.05, PNL: +2.00%
+  Cycle 129: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $1.78, PNL: -17.71%
+  Cycle 130: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $23.41, PNL: -3.58%
+  Cycle 131: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $0.05, PNL: -5.10%
+  Cycle 132: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $1.48, PNL: -17.83%
+  Cycle 133: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $19.83, PNL: +0.15%
+  Cycle 134: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → stop_loss @ $4.93, PNL: -26.96%
+  Cycle 135: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $5.87, PNL: -3.93%
+  Cycle 136: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 865 candles
+    → timeout @ $16.25, PNL: -4.07%
+
+✅ 시뮬레이션 완료: 137 cycles, 97 trades
+  최종 잔고: 86.66 USDT
+
+============================================================
+🎰 Binance 백테스트 (스캐너 모드, 96h)
+============================================================
+📋 공통 코인 목록 로드 중...
+✅ 공통 코인: 383개
+🎲 스캐너 시뮬레이션 시작 (공통 코인 풀)
+  Cycle 1: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 2: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $3.97, PNL: -0.60%
+  Cycle 3: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 4: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $54.07, PNL: +12.29%
+  Cycle 5: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $3.60, PNL: -6.80%
+  Cycle 6: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 7: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 8: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $393.50, PNL: -13.12%
+  Cycle 9: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $5.78, PNL: +11.07%
+  Cycle 10: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $32.54, PNL: +0.46%
+  Cycle 11: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $26.67, PNL: +6.34%
+  Cycle 12: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $27.20, PNL: +1.99%
+  Cycle 13: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 14: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 15: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 16: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 17: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $43.63, PNL: -15.30%
+  Cycle 18: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $16.40, PNL: -7.97%
+  Cycle 19: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $16.48, PNL: +0.49%
+  Cycle 20: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $16.46, PNL: -0.12%
+  Cycle 21: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 22: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $230.50, PNL: -14.38%
+  Cycle 23: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 24: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $5.74, PNL: -8.25%
+  Cycle 25: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 26: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 27: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $274.10, PNL: +15.90%
+  Cycle 28: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $338.60, PNL: +23.53%
+  Cycle 29: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.52, PNL: -5.40%
+  Cycle 30: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $40.56, PNL: -8.09%
+  Cycle 31: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 32: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $43.66, PNL: +8.96%
+  Cycle 33: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 34: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $45.87, PNL: -2.18%
+  Cycle 35: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $42.89, PNL: -6.50%
+  Cycle 36: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $42.22, PNL: -1.56%
+  Cycle 37: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 38: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $53.07, PNL: -0.66%
+  Cycle 39: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 40: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $21.91, PNL: +10.94%
+  Cycle 41: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $45.00, PNL: -12.42%
+  Cycle 42: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 43: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $39.61, PNL: -4.02%
+  Cycle 44: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 45: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $40.13, PNL: -3.09%
+  Cycle 46: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 47: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $40.66, PNL: -5.62%
+  Cycle 48: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $46.83, PNL: +15.17%
+  Cycle 49: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 50: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.24, PNL: +0.26%
+  Cycle 51: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $27.49, PNL: -1.68%
+  Cycle 52: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 53: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $37.05, PNL: -11.34%
+  Cycle 54: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $26.98, PNL: +0.97%
+  Cycle 55: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $28.15, PNL: +4.34%
+  Cycle 56: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $29.65, PNL: +5.33%
+  Cycle 57: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.26, PNL: -7.05%
+  Cycle 58: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 59: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $26.16, PNL: +3.36%
+  Cycle 60: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $336.30, PNL: -6.87%
+  Cycle 61: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $310.30, PNL: -7.73%
+  Cycle 62: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $22.36, PNL: +1.41%
+  Cycle 63: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 64: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $47.08, PNL: +8.40%
+  Cycle 65: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 66: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 67: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $54.85, PNL: +5.28%
+  Cycle 68: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $310.40, PNL: +3.74%
+  Cycle 69: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $320.80, PNL: +3.35%
+  Cycle 70: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $331.70, PNL: +3.40%
+  Cycle 71: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → stop_loss @ $22.96, PNL: -45.73%
+  Cycle 72: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → trailing_stop @ $387.63, PNL: +30.52%
+  Cycle 73: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $15.48, PNL: -4.39%
+  Cycle 74: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → trailing_stop @ $279.00, PNL: +18.27%
+  Cycle 75: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 0 candles
+    ⚠️ 에러: 날짜 범위 내 데이터 없음
+  Cycle 76: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $404.45, PNL: +19.17%
+  Cycle 77: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → stop_loss @ $0.22, PNL: -25.48%
+  Cycle 78: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → trailing_stop @ $598.50, PNL: +35.03%
+  Cycle 79: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $33.12, PNL: -3.30%
+  Cycle 80: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $4.43, PNL: -20.82%
+  Cycle 81: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $11.56, PNL: -7.22%
+  Cycle 82: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → stop_loss @ $482.60, PNL: -27.01%
+  Cycle 83: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.22, PNL: +13.18%
+  Cycle 84: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $4.17, PNL: +1.68%
+  Cycle 85: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.18, PNL: -4.51%
+  Cycle 86: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → trailing_stop @ $404.99, PNL: +19.08%
+  Cycle 87: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.15, PNL: -10.93%
+  Cycle 88: COMP/USDT
+  📊 [COMP/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $24.51, PNL: -14.51%
+  Cycle 89: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.07, PNL: +3.40%
+  Cycle 90: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.14, PNL: +9.23%
+  Cycle 91: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $528.29, PNL: +18.14%
+  Cycle 92: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.20, PNL: +21.84%
+  Cycle 93: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $10.74, PNL: +4.99%
+  Cycle 94: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $10.30, PNL: -4.10%
+  Cycle 95: BANK/USDT
+  📊 [BANK/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.05, PNL: +7.32%
+  Cycle 96: XPL/USDT
+  📊 [XPL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.13, PNL: -6.91%
+  Cycle 97: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $1.76, PNL: -18.40%
+  Cycle 98: EUL/USDT
+  📊 [EUL/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → trailing_stop @ $2.16, PNL: +22.38%
+  Cycle 99: TAO/USDT
+  📊 [TAO/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $199.10, PNL: -16.27%
+  Cycle 100: ZEC/USDT
+  📊 [ZEC/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $251.96, PNL: -17.02%
+  Cycle 101: OM/USDT
+  📊 [OM/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $0.05, PNL: -6.63%
+  Cycle 102: ENS/USDT
+  📊 [ENS/USDT] 데이터 다운로드 중...
+  ✅ 1153 candles
+    → timeout @ $5.85, PNL: -1.18%
+
+✅ 시뮬레이션 완료: 103 cycles, 76 trades
+  최종 잔고: 99.29 USDT
+
+💾 결과 저장: binance_backtest_SCANNER_20260214_111721.json
+
+============================================================
+📊 백테스트 요약
+============================================================
+
+48h:
+  잔고: 88.7 USDT (-11.30%)
+  거래: 158회 (승률: 41.77%)
+  청산: {'timeout': 152, 'stop_loss': 3, 'trailing_stop': 3}
+
+72h:
+  잔고: 86.66 USDT (-13.34%)
+  거래: 97회 (승률: 44.33%)
+  청산: {'timeout': 90, 'stop_loss': 5, 'trailing_stop': 2}
+
+96h:
+  잔고: 99.29 USDT (-0.71%)
+  거래: 76회 (승률: 47.37%)
+  청산: {'timeout': 68, 'stop_loss': 3, 'trailing_stop': 5}

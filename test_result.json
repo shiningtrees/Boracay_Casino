@@ -1,0 +1,228 @@
+{
+  "symbol": "BTC/USDT",
+  "period": "2026-02-12 ~ 2026-02-14",
+  "results": {
+    "6h": {
+      "cycle_hours": 6,
+      "initial_balance": 100.0,
+      "final_balance": 100.18,
+      "peak_balance": 100.18,
+      "total_pnl": 0.18,
+      "total_pnl_percent": 0.18,
+      "total_trades": 7,
+      "winning_trades": 4,
+      "losing_trades": 3,
+      "win_rate": 57.14,
+      "exit_reasons": {
+        "timeout": 7
+      },
+      "avg_pnl_percent": 0.51,
+      "avg_win_percent": 1.8,
+      "avg_loss_percent": -1.21,
+      "max_jackpot": {
+        "symbol": "BTC/USDT",
+        "pnl_percent": 3.01,
+        "exit_reason": "timeout",
+        "entry_time": "2026-02-13 12:30"
+      },
+      "survival_days": 1,
+      "bankruptcy_point": null,
+      "trades": [
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 67116.59,
+          "exit_price": 67024.0,
+          "entry_time": "2026-02-12 00:00:00",
+          "exit_time": "2026-02-12 06:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -0.14,
+          "net_pnl_usdt": -0.01,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 67077.99,
+          "exit_price": 67940.24,
+          "entry_time": "2026-02-12 06:05:00",
+          "exit_time": "2026-02-12 12:05:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 1.29,
+          "net_pnl_usdt": 0.07,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 68015.07,
+          "exit_price": 65687.65,
+          "entry_time": "2026-02-12 12:10:00",
+          "exit_time": "2026-02-12 18:10:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -3.42,
+          "net_pnl_usdt": -0.17,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 65256.41,
+          "exit_price": 66178.2,
+          "entry_time": "2026-02-12 18:15:00",
+          "exit_time": "2026-02-13 00:15:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 1.41,
+          "net_pnl_usdt": 0.07,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 66139.44,
+          "exit_price": 66096.4,
+          "entry_time": "2026-02-13 00:20:00",
+          "exit_time": "2026-02-13 06:20:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -0.07,
+          "net_pnl_usdt": -0.0,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 66103.99,
+          "exit_price": 67101.73,
+          "entry_time": "2026-02-13 06:25:00",
+          "exit_time": "2026-02-13 12:25:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 1.51,
+          "net_pnl_usdt": 0.08,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 67052.68,
+          "exit_price": 69072.35,
+          "entry_time": "2026-02-13 12:30:00",
+          "exit_time": "2026-02-13 18:30:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 3.01,
+          "net_pnl_usdt": 0.15,
+          "exit_reason": "timeout"
+        }
+      ]
+    },
+    "12h": {
+      "cycle_hours": 12,
+      "initial_balance": 100.0,
+      "final_balance": 100.0,
+      "peak_balance": 100.06,
+      "total_pnl": -0.0,
+      "total_pnl_percent": -0.0,
+      "total_trades": 3,
+      "winning_trades": 2,
+      "losing_trades": 1,
+      "win_rate": 66.67,
+      "exit_reasons": {
+        "timeout": 3
+      },
+      "avg_pnl_percent": -0.02,
+      "avg_win_percent": 1.08,
+      "avg_loss_percent": -2.22,
+      "max_jackpot": {
+        "symbol": "BTC/USDT",
+        "pnl_percent": 1.23,
+        "exit_reason": "timeout",
+        "entry_time": "2026-02-12 00:00"
+      },
+      "survival_days": 1,
+      "bankruptcy_point": null,
+      "trades": [
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 67116.59,
+          "exit_price": 67944.24,
+          "entry_time": "2026-02-12 00:00:00",
+          "exit_time": "2026-02-12 12:00:00",
+          "duration_hours": 12.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 1.23,
+          "net_pnl_usdt": 0.06,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 67940.24,
+          "exit_price": 66433.5,
+          "entry_time": "2026-02-12 12:05:00",
+          "exit_time": "2026-02-13 00:05:00",
+          "duration_hours": 12.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -2.22,
+          "net_pnl_usdt": -0.11,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 66374.87,
+          "exit_price": 66985.29,
+          "entry_time": "2026-02-13 00:10:00",
+          "exit_time": "2026-02-13 12:10:00",
+          "duration_hours": 12.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 0.92,
+          "net_pnl_usdt": 0.05,
+          "exit_reason": "timeout"
+        }
+      ]
+    },
+    "24h": {
+      "cycle_hours": 24,
+      "initial_balance": 100.0,
+      "final_balance": 99.95,
+      "peak_balance": 100.0,
+      "total_pnl": -0.05,
+      "total_pnl_percent": -0.05,
+      "total_trades": 1,
+      "winning_trades": 0,
+      "losing_trades": 1,
+      "win_rate": 0.0,
+      "exit_reasons": {
+        "timeout": 1
+      },
+      "avg_pnl_percent": -0.99,
+      "avg_win_percent": 0,
+      "avg_loss_percent": -0.99,
+      "max_jackpot": {
+        "symbol": "BTC/USDT",
+        "pnl_percent": -0.99,
+        "exit_reason": "timeout",
+        "entry_time": "2026-02-12 00:00"
+      },
+      "survival_days": 1,
+      "bankruptcy_point": null,
+      "trades": [
+        {
+          "symbol": "BTC/USDT",
+          "entry_price": 67116.59,
+          "exit_price": 66450.95,
+          "entry_time": "2026-02-12 00:00:00",
+          "exit_time": "2026-02-13 00:00:00",
+          "duration_hours": 24.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -0.99,
+          "net_pnl_usdt": -0.05,
+          "exit_reason": "timeout"
+        }
+      ]
+    }
+  },
+  "recommendation": {
+    "best_profit_cycle": "6h",
+    "best_profit_balance": 100.18,
+    "longest_survival_cycle": "6h",
+    "longest_survival_days": 1
+  }
+}

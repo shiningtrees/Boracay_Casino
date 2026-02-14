@@ -1,0 +1,23 @@
+---
+description: 봇 프로세스 시작/종료/재시작 시 지켜야 할 규칙
+alwaysApply: true
+---
+
+# 봇 프로세스 관리
+
+## 프로세스 종료
+- `kill` 및 파일 삭제는 반드시 `required_permissions: ["all"]`로 실행
+- 종료 순서: `kill -9 <PID>` → `sleep 5` → `rm -f .boracay_casino_bot.lock`
+- 종료 후 `ps aux | grep 'python main.py' | grep -v grep`으로 잔여 프로세스 확인
+- 좀비 프로세스 있으면 `pkill -9 -f 'python main.py'`로 전부 정리
+
+## 프로세스 시작
+- 시작 전 반드시 기존 프로세스 없는지 확인
+- 텔레그램 Conflict 에러 방지를 위해 종료 후 최소 5초 대기
+- 시작 명령: `rm -f .boracay_casino_bot.lock && source venv/bin/activate && python main.py 2>&1`
+- `required_permissions: ["full_network"]` 필요
+- `block_until_ms: 15000` 이상 세팅 (부팅 로그 확인용)
+
+## 로그 확인
+- 터미널 출력이 끊길 수 있으므로 로그 파일을 직접 확인: `logs/casino_YYYY-MM-DD.log`
+- stderr도 캡처하려면 `2>&1` 붙이기

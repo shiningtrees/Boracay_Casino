@@ -1,0 +1,315 @@
+{
+  "mode": "scanner",
+  "symbol": "RANDOM (Scanner)",
+  "period": "2026-02-12 ~ 2026-02-14",
+  "results": {
+    "6h": {
+      "cycle_hours": 6,
+      "initial_balance": 100.0,
+      "final_balance": 101.25,
+      "peak_balance": 101.44,
+      "total_pnl": 1.25,
+      "total_pnl_percent": 1.25,
+      "total_trades": 10,
+      "winning_trades": 7,
+      "losing_trades": 3,
+      "win_rate": 70.0,
+      "exit_reasons": {
+        "timeout": 10
+      },
+      "avg_pnl_percent": 2.46,
+      "avg_win_percent": 5.87,
+      "avg_loss_percent": -5.51,
+      "max_jackpot": {
+        "symbol": "KLARA/USDT",
+        "pnl_percent": 28.33,
+        "exit_reason": "timeout",
+        "entry_time": "2026-02-13 12:00"
+      },
+      "survival_days": 2,
+      "bankruptcy_point": null,
+      "trades": [
+        {
+          "symbol": "COMP/USDT",
+          "entry_price": 15.84,
+          "exit_price": 15.98,
+          "entry_time": "2026-02-12 00:00:00",
+          "exit_time": "2026-02-12 06:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 0.88,
+          "net_pnl_usdt": 0.04,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "TAO/USDT",
+          "entry_price": 145.94,
+          "exit_price": 150.99,
+          "entry_time": "2026-02-12 06:00:00",
+          "exit_time": "2026-02-12 12:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 3.46,
+          "net_pnl_usdt": 0.18,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "AIXDROP/USDT",
+          "entry_price": 0.00014379,
+          "exit_price": 0.00014545,
+          "entry_time": "2026-02-12 12:00:00",
+          "exit_time": "2026-02-12 18:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 1.15,
+          "net_pnl_usdt": 0.06,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "TAO/USDT",
+          "entry_price": 152.5,
+          "exit_price": 157.01,
+          "entry_time": "2026-02-12 18:00:00",
+          "exit_time": "2026-02-13 00:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 2.96,
+          "net_pnl_usdt": 0.15,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "PIPPIN/USDT",
+          "entry_price": 0.540286,
+          "exit_price": 0.4833,
+          "entry_time": "2026-02-13 00:00:00",
+          "exit_time": "2026-02-13 06:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -10.55,
+          "net_pnl_usdt": -0.54,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "AIXDROP/USDT",
+          "entry_price": 0.00014034,
+          "exit_price": 0.0001432,
+          "entry_time": "2026-02-13 06:00:00",
+          "exit_time": "2026-02-13 12:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 2.04,
+          "net_pnl_usdt": 0.1,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "KLARA/USDT",
+          "entry_price": 0.00048,
+          "exit_price": 0.000616,
+          "entry_time": "2026-02-13 12:00:00",
+          "exit_time": "2026-02-13 18:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 28.33,
+          "net_pnl_usdt": 1.44,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "CTC/USDT",
+          "entry_price": 0.1791,
+          "exit_price": 0.1684,
+          "entry_time": "2026-02-13 18:00:00",
+          "exit_time": "2026-02-14 00:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -5.97,
+          "net_pnl_usdt": -0.3,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "OM/USDT",
+          "entry_price": 0.05991,
+          "exit_price": 0.06128,
+          "entry_time": "2026-02-14 00:00:00",
+          "exit_time": "2026-02-14 06:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 2.29,
+          "net_pnl_usdt": 0.12,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "H/USDT",
+          "entry_price": 0.23045,
+          "exit_price": 0.23045,
+          "entry_time": "2026-02-14 06:00:00",
+          "exit_time": "2026-02-14 12:00:00",
+          "duration_hours": 6.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 0.0,
+          "net_pnl_usdt": 0.0,
+          "exit_reason": "timeout"
+        }
+      ]
+    },
+    "12h": {
+      "cycle_hours": 12,
+      "initial_balance": 100.0,
+      "final_balance": 100.71,
+      "peak_balance": 100.71,
+      "total_pnl": 0.71,
+      "total_pnl_percent": 0.71,
+      "total_trades": 5,
+      "winning_trades": 2,
+      "losing_trades": 3,
+      "win_rate": 40.0,
+      "exit_reasons": {
+        "timeout": 4,
+        "trailing_stop": 1
+      },
+      "avg_pnl_percent": 2.81,
+      "avg_win_percent": 7.84,
+      "avg_loss_percent": -0.55,
+      "max_jackpot": {
+        "symbol": "CTC/USDT",
+        "pnl_percent": 12.75,
+        "exit_reason": "trailing_stop",
+        "entry_time": "2026-02-13 12:00"
+      },
+      "survival_days": 2,
+      "bankruptcy_point": null,
+      "trades": [
+        {
+          "symbol": "TAO/USDT",
+          "entry_price": 146.68,
+          "exit_price": 150.99,
+          "entry_time": "2026-02-12 00:00:00",
+          "exit_time": "2026-02-12 12:00:00",
+          "duration_hours": 12.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 2.94,
+          "net_pnl_usdt": 0.15,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "COMP/USDT",
+          "entry_price": 15.89,
+          "exit_price": 15.78,
+          "entry_time": "2026-02-12 12:00:00",
+          "exit_time": "2026-02-13 00:00:00",
+          "duration_hours": 12.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -0.69,
+          "net_pnl_usdt": -0.04,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "ZEC/USDT",
+          "entry_price": 235.15,
+          "exit_price": 232.92,
+          "entry_time": "2026-02-13 00:00:00",
+          "exit_time": "2026-02-13 12:00:00",
+          "duration_hours": 12.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": -0.95,
+          "net_pnl_usdt": -0.05,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "CTC/USDT",
+          "entry_price": 0.1618,
+          "exit_price": 0.18243,
+          "entry_time": "2026-02-13 12:00:00",
+          "exit_time": "2026-02-13 13:45:00",
+          "duration_hours": 1.75,
+          "amount_usdt": 5.1,
+          "pnl_percent": 12.75,
+          "net_pnl_usdt": 0.65,
+          "exit_reason": "trailing_stop"
+        },
+        {
+          "symbol": "ZEC/USDT",
+          "entry_price": 238.23,
+          "exit_price": 238.23,
+          "entry_time": "2026-02-14 00:00:00",
+          "exit_time": "2026-02-14 12:00:00",
+          "duration_hours": 12.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 0.0,
+          "net_pnl_usdt": 0.0,
+          "exit_reason": "timeout"
+        }
+      ]
+    },
+    "24h": {
+      "cycle_hours": 24,
+      "initial_balance": 100.0,
+      "final_balance": 101.95,
+      "peak_balance": 101.95,
+      "total_pnl": 1.95,
+      "total_pnl_percent": 1.95,
+      "total_trades": 3,
+      "winning_trades": 3,
+      "losing_trades": 0,
+      "win_rate": 100.0,
+      "exit_reasons": {
+        "trailing_stop": 2,
+        "timeout": 1
+      },
+      "avg_pnl_percent": 12.75,
+      "avg_win_percent": 12.75,
+      "avg_loss_percent": 0,
+      "max_jackpot": {
+        "symbol": "AIV/USDT",
+        "pnl_percent": 20.9,
+        "exit_reason": "trailing_stop",
+        "entry_time": "2026-02-12 00:00"
+      },
+      "survival_days": 2,
+      "bankruptcy_point": null,
+      "trades": [
+        {
+          "symbol": "AIV/USDT",
+          "entry_price": 0.3163,
+          "exit_price": 0.38241,
+          "entry_time": "2026-02-12 00:00:00",
+          "exit_time": "2026-02-12 01:00:00",
+          "duration_hours": 1.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 20.9,
+          "net_pnl_usdt": 1.06,
+          "exit_reason": "trailing_stop"
+        },
+        {
+          "symbol": "ZEC/USDT",
+          "entry_price": 235.15,
+          "exit_price": 238.23,
+          "entry_time": "2026-02-13 00:00:00",
+          "exit_time": "2026-02-14 00:00:00",
+          "duration_hours": 24.0,
+          "amount_usdt": 5.1,
+          "pnl_percent": 1.31,
+          "net_pnl_usdt": 0.07,
+          "exit_reason": "timeout"
+        },
+        {
+          "symbol": "TAL/USDT",
+          "entry_price": 0.03106,
+          "exit_price": 0.036045,
+          "entry_time": "2026-02-14 00:00:00",
+          "exit_time": "2026-02-14 01:35:00",
+          "duration_hours": 1.5833333333333333,
+          "amount_usdt": 5.1,
+          "pnl_percent": 16.05,
+          "net_pnl_usdt": 0.82,
+          "exit_reason": "trailing_stop"
+        }
+      ]
+    }
+  },
+  "recommendation": {
+    "best_profit_cycle": "24h",
+    "best_profit_balance": 101.95,
+    "longest_survival_cycle": "6h",
+    "longest_survival_days": 2
+  }
+}
