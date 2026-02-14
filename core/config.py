@@ -16,7 +16,7 @@ TEST_CYCLE_MINUTES = 10
 # 1-2. 실전 모드 설정
 LIVE_FIRST_TRADE_HOUR = 12
 LIVE_FIRST_TRADE_MINUTE = 0
-LIVE_CYCLE_HOURS = 48
+LIVE_CYCLE_HOURS = 72
 LIVE_CYCLE_MINUTES = 0
 
 # 2. 베팅 설정
@@ -42,6 +42,12 @@ MIN_ORDER_USDT = 5.0
 BALANCE_BUFFER_USDT = 0.2
 ORDER_MAX_RETRIES = 3
 ORDER_RETRY_DELAY_SECONDS = 2
+
+# 6. 손절/익절 설정
+STOP_LOSS_THRESHOLD = -25.0   # 진입가 대비 -25% 도달 시 즉시 손절
+TS_ACTIVATION_REWARD = 25.0   # 수익률 +25% 도달 시 트레일링 스탑 활성화
+TS_CALLBACK_RATE = 10.0       # 최고점(Peak) 대비 10% 하락 시 익절 매도
+CHECK_INTERVAL = 300          # 감시 주기 (5분/300초)
 
 
 # ==========================================

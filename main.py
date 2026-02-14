@@ -249,10 +249,10 @@ async def on_startup(application):
             name="daily_bet"
         )
         
-        # 2. 상태 체크 작업 (1분 간격, 5초 뒤 시작)
+        # 2. 상태 체크 작업 (5분 간격, 5초 뒤 시작)
         job_queue.run_repeating(
             casino.check_48h_exit_callback, 
-            interval=60, 
+            interval=config.CHECK_INTERVAL, 
             first=5, 
             data=chat_id,
             chat_id=chat_id,
@@ -270,6 +270,10 @@ async def on_startup(application):
             f"💰 Balance: {free:.2f} USDT\n"
             f"🕐 Cycle: {config.CYCLE_STRING}\n"
             f"⏱️ Early Exit: {config.EARLY_EXIT_SECONDS}초\n"
+            f"🛑 Stop Loss: {config.STOP_LOSS_THRESHOLD}%\n"
+            f"🎯 TS Activation: +{config.TS_ACTIVATION_REWARD}%\n"
+            f"📉 TS Callback: {config.TS_CALLBACK_RATE}%\n"
+            f"🔍 Check Interval: {config.CHECK_INTERVAL}초\n"
             f"🕛 First Start: {config.FIRST_TRADE_START_AT}"
         )
 

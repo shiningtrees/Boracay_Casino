@@ -19,7 +19,17 @@ class StateManager:
                     return data
             except Exception as e:
                 logger.error(f"⚠️ 상태 파일 로드 실패: {e}")
-        return {"active_bet": None, "history": [], "pending_selection": None, "cooldown_until": None, "last_bet_job_time": None}
+        return {
+            "active_bet": None, 
+            "history": [], 
+            "pending_selection": None, 
+            "cooldown_until": None, 
+            "last_bet_job_time": None,
+            "trailing_stop": {
+                "is_active": False,
+                "peak_price": None
+            }
+        }
 
     def save_state(self):
         try:
@@ -61,6 +71,13 @@ class StateManager:
             "entry_time": entry_time
         }
         self.state["cooldown_until"] = cooldown_until
+        
+        # 트레일링 스탑 초기화
+        self.state["trailing_stop"] = {
+            "is_active": False,
+            "peak_price": None
+        }
+        
         logger.info(f"✅ 신규 베팅 상태 저장: {symbol} (쿨타임: ~{cooldown_until})")
         self.save_state()
 
@@ -83,6 +100,12 @@ class StateManager:
             
             # 쿨타임도 함께 클리어 (청산 완료 시 즉시 다음 베팅 가능)
             self.state["cooldown_until"] = None
+            
+            # 트레일링 스탑 상태 초기화
+            self.state["trailing_stop"] = {
+                "is_active": False,
+                "peak_price": None
+            }
             
             logger.info(f"🧹 베팅 청산 완료: {bet['symbol']} (Reason: {reason}, PNL: {bet['pnl_percent']}%)")
             logger.info(f"🔥 쿨타임 해제 (청산 완료)")
@@ -136,3 +159,25 @@ class StateManager:
         except Exception as e:
             logger.error(f"❌ 다음 베팅 시간 계산 실패: {e}")
             return None
+    
+    def get_trailing_stop_state(self):
+        """트레일링 스탑 상태 조회"""
+        ts = self.state.get("trailing_stop", {})
+        return ts.get("is_active", False), ts.get("peak_price")
+    
+    def activate_trailing_stop(self, peak_price):
+        """트레일링 스탑 활성화"""
+        self.state["trailing_stop"] = {
+            "is_active": True,
+            "peak_price": peak_price
+        }
+        logger.info(f"🎯 트레일링 스탑 활성화: Peak=${peak_price}")
+        self.save_state()
+    
+    def update_peak_price(self, new_peak):
+        """트레일링 스탑 최고가 갱신"""
+        ts = self.state.get("trailing_stop", {})
+        if ts.get("is_active"):
+            self.state["trailing_stop"]["peak_price"] = new_peak
+            logger.info(f"📈 트레일링 최고가 갱신: Peak=${new_peak}")
+            self.save_state()

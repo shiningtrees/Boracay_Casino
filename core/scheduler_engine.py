@@ -282,13 +282,124 @@ class CasinoScheduler:
                 logger.error(f"❌ 메시지 전송 실패: {e}")
 
     async def check_48h_exit_callback(self, context: ContextTypes.DEFAULT_TYPE):
-        """JobQueue에 의해 실행되는 자동 청산 로직"""
-        logger.debug("🔎 [Job] 자동 청산 조건 체크 중...")
+        """JobQueue에 의해 실행되는 자동 청산 및 손절/익절 로직"""
+        logger.debug("🔎 [Job] 자동 청산/손절/익절 조건 체크 중...")
         
         active = self.state.get_active_bet()
         if not active:
             return
 
+        symbol = active['symbol']
+        entry_price = active['entry_price']
+        
+        # 현재가 조회
+        current_price = self.mexc.get_ticker(symbol)
+        if not current_price:
+            logger.error(f"❌ 시세 조회 실패: {symbol}")
+            return
+        
+        # 수익률 계산
+        pnl_percent = ((current_price - entry_price) / entry_price) * 100
+        
+        # 1. 손절 체크: -25% 이하
+        if pnl_percent <= config.STOP_LOSS_THRESHOLD:
+            logger.warning(f"🛑 손절 조건 감지! PNL={pnl_percent:.2f}% <= {config.STOP_LOSS_THRESHOLD}%")
+            
+            if config.ENABLE_REAL_ORDERS:
+                sell_order = await self._create_market_sell_with_retry(symbol)
+                if not sell_order:
+                    logger.error("❌ [Order] 손절 매도 주문 실패. 상태 유지.")
+                    if self.bot:
+                        await self.bot.send_message(
+                            f"❌ [손절 실패] 주문 재시도 초과\n"
+                            f"Symbol: {symbol}\n"
+                            f"포지션 상태는 유지됩니다."
+                        )
+                    return
+                current_price = self._extract_order_price(sell_order, current_price)
+                logger.info(f"✅ [Order] 손절 매도 주문 성공: {sell_order.get('id', 'N/A')}")
+            
+            result = self.state.clear_active_bet(current_price, reason="stop_loss")
+            pnl = result['pnl_percent']
+            
+            msg = (
+                f"🛑 [손절 실행] STOP LOSS\n"
+                f"💧 PNL: {pnl:+.2f}%\n"
+                f"Entry: ${entry_price}\n"
+                f"Exit: ${current_price}\n"
+                f"📉 Threshold: {config.STOP_LOSS_THRESHOLD}%\n"
+                f"{self._balance_snapshot_text()}"
+            )
+            
+            if self.bot:
+                await self.bot.send_message(msg)
+            elif context.job.chat_id:
+                await context.bot.send_message(chat_id=context.job.chat_id, text=msg)
+            return
+        
+        # 2. 트레일링 스탑 로직
+        is_ts_active, peak_price = self.state.get_trailing_stop_state()
+        
+        if not is_ts_active:
+            # 트레일링 활성화 조건 체크: +25% 도달
+            if pnl_percent >= config.TS_ACTIVATION_REWARD:
+                logger.info(f"🎯 트레일링 스탑 활성화 조건 도달! PNL={pnl_percent:.2f}%")
+                self.state.activate_trailing_stop(current_price)
+                
+                if self.bot:
+                    await self.bot.send_message(
+                        f"🎯 [트레일링 활성화]\n"
+                        f"📈 PNL: {pnl_percent:+.2f}%\n"
+                        f"💰 Peak: ${current_price}\n"
+                        f"🎢 최고점 대비 {config.TS_CALLBACK_RATE}% 하락 시 익절 예정"
+                    )
+        else:
+            # 트레일링 활성화 상태
+            # 2-1. 최고가 갱신 체크
+            if current_price > peak_price:
+                logger.info(f"📈 최고가 갱신: ${peak_price} -> ${current_price}")
+                self.state.update_peak_price(current_price)
+                peak_price = current_price
+            
+            # 2-2. 익절 조건 체크: peak 대비 10% 하락
+            callback_threshold = peak_price * (1 - config.TS_CALLBACK_RATE / 100)
+            if current_price <= callback_threshold:
+                logger.info(f"🎉 익절 조건 감지! Current=${current_price} <= Threshold=${callback_threshold:.4f}")
+                
+                if config.ENABLE_REAL_ORDERS:
+                    sell_order = await self._create_market_sell_with_retry(symbol)
+                    if not sell_order:
+                        logger.error("❌ [Order] 익절 매도 주문 실패. 상태 유지.")
+                        if self.bot:
+                            await self.bot.send_message(
+                                f"❌ [익절 실패] 주문 재시도 초과\n"
+                                f"Symbol: {symbol}\n"
+                                f"포지션 상태는 유지됩니다."
+                            )
+                        return
+                    current_price = self._extract_order_price(sell_order, current_price)
+                    logger.info(f"✅ [Order] 익절 매도 주문 성공: {sell_order.get('id', 'N/A')}")
+                
+                result = self.state.clear_active_bet(current_price, reason="trailing_stop")
+                pnl = result['pnl_percent']
+                
+                msg = (
+                    f"🎉 [익절 실행] TRAILING STOP\n"
+                    f"💰 PNL: {pnl:+.2f}%\n"
+                    f"Entry: ${entry_price}\n"
+                    f"Peak: ${peak_price}\n"
+                    f"Exit: ${current_price}\n"
+                    f"📊 Callback: {config.TS_CALLBACK_RATE}%\n"
+                    f"{self._balance_snapshot_text()}"
+                )
+                
+                if self.bot:
+                    await self.bot.send_message(msg)
+                elif context.job.chat_id:
+                    await context.bot.send_message(chat_id=context.job.chat_id, text=msg)
+                return
+        
+        # 3. 타임아웃 체크 (기존 로직)
         entry_time = datetime.strptime(active["entry_time"], "%Y-%m-%d %H:%M:%S")
         # 주기보다 N초 일찍 청산
         exit_time = entry_time + config.CYCLE_DELTA - timedelta(seconds=config.EARLY_EXIT_SECONDS)
@@ -296,22 +407,16 @@ class CasinoScheduler:
         
         if now >= exit_time:
             logger.info(f"⏰ 시간 만료 감지! (Entry: {entry_time} -> Exit: {exit_time})")
-            logger.info(f"🗑️ 자동 청산 실행: {active['symbol']}")
-            
-            # 실제 현재가 조회
-            current_price = self.mexc.get_ticker(active['symbol'])
-            if not current_price:
-                logger.error(f"❌ 시세 조회 실패. 진입가 기준으로 청산 처리.")
-                current_price = active['entry_price']
+            logger.info(f"🗑️ 자동 청산 실행: {symbol}")
 
             if config.ENABLE_REAL_ORDERS:
-                sell_order = await self._create_market_sell_with_retry(active['symbol'])
+                sell_order = await self._create_market_sell_with_retry(symbol)
                 if not sell_order:
                     logger.error("❌ [Order] 자동 청산 주문 실패. 상태 유지.")
                     if self.bot:
                         await self.bot.send_message(
                             f"❌ [자동 청산 실패] 주문 재시도 초과\n"
-                            f"Symbol: {active['symbol']}\n"
+                            f"Symbol: {symbol}\n"
                             f"포지션 상태는 유지됩니다."
                         )
                     return
@@ -325,7 +430,7 @@ class CasinoScheduler:
             msg = (
                 f"⏰ [타임아웃] 자동 청산 ({config.CYCLE_STRING} 경과)\n"
                 f"{emoji} PNL: {pnl:+.2f}%\n"
-                f"Entry: ${active['entry_price']}\n"
+                f"Entry: ${entry_price}\n"
                 f"Exit: ${current_price}\n"
                 f"💤 다음 사이클까지 휴식합니다.\n"
                 f"{self._balance_snapshot_text()}"
